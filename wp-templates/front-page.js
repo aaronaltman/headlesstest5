@@ -3,8 +3,8 @@ import * as MENUS from 'constants/menus';
 import { useQuery, gql } from '@apollo/client';
 import { FaArrowRight } from 'react-icons/fa';
 import styles from 'styles/pages/_Home.module.scss';
+import AaronHero from 'components/AaronHero/AaronHero.js';
 import {
-  AaronHero,
   EntryHeader,
   Main,
   Button,
@@ -32,7 +32,6 @@ export default function Component() {
   const { title: siteTitle, description: siteDescription } =
     data?.generalSettings;
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
-  const footerMenu = data?.footerMenuItems?.nodes ?? [];
 
   const mainBanner = {
     sourceUrl: '/static/banner.jpeg',
@@ -116,7 +115,7 @@ export default function Component() {
           </section>
         </div>
       </Main>
-      <Footer menuItems={footerMenu} />
+      <Footer />
     </>
   );
 }
