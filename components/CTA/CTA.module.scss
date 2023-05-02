@@ -6,10 +6,10 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
-  background-color: var(--color-primary);
+  background-color: #0fe2e9;
   padding: 6rem;
   border: 2rem solid #fff;
-  color: #fff;
+  color: #333;
   box-shadow: $box-shadow;
 
   @media (min-width: $breakpoint-small) {
