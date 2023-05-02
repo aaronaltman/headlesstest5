@@ -20,12 +20,9 @@ const AaronHero = () => {
                     </div>
                     <div className={styles.rightCol}>
                         <div className={styles.content}>
+                            <h1 className={styles.heading}> UNLEASH YOUR WORDPRESS WEBSITE FULL POTENTIAL</h1>
                             <p className={styles.text}>
-                                YOUR POCKET CAR EXPERT
-                            </p>
-                            <h1 className={styles.heading}>Save money on vehicle repairs & car mechanic bills</h1>
-                            <p className={styles.text}>
-                                The FIXD sensor and free app tells you why your check engine light is on to help you save time and money
+                                Your website is your most valuable digital asset. Let us help you unlock its full potential with our expertise in headless WordPress development. We create seamless and engaging digital experiences that convert visitors into customers. Save time and money while we build a website that elevates your brand and drives results.
                             </p>
                             <button className={styles.button}>Learn More</button>
                         </div>
