@@ -4,6 +4,7 @@ import { useQuery, gql } from '@apollo/client';
 import { FaArrowRight } from 'react-icons/fa';
 import styles from 'styles/pages/_Home.module.scss';
 import {
+  AaronHero,
   EntryHeader,
   Main,
   Button,
@@ -47,6 +48,8 @@ export default function Component() {
         description={siteDescription}
         menuItems={primaryMenu}
       />
+
+      <AaronHero />
 
       <Main className={styles.home}>
         <EntryHeader image={mainBanner} />
