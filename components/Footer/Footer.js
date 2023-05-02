@@ -14,8 +14,8 @@ export default function Footer() {
                   <Image
                       src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/fixdapp-logo.webp" // The path to your image file
                       alt="LOGO" // A brief description of the image for accessibility
-                      width={150} // Width of the image
-                      height={48} // Height of the image
+                      width={300} // Width of the image
+                      height={96} // Height of the image
                   />
                 </div>
               </div>
