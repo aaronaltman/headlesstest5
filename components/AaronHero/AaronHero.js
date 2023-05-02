@@ -11,10 +11,10 @@ const AaronHero = () => {
                     <div className={styles.leftCol}>
                         <div className={styles.imageWrapper}>
                             <Image
-                                src="https://bpheadlesst596.wpengine.com/wp-content/uploads/2023/04/phones-app-transparent-large.webp"
+                                src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/pexels-pixabay-73871-scaled.jpeg"
                                 alt="Fixdapp way of fixing cars"
-                                width={972}
-                                height={874}
+                                width={1024}
+                                height={685}
                             />
                         </div>
                     </div>
