@@ -20,7 +20,7 @@
 
     .leftCol {
       flex: 1;
-      padding: 0 30px;
+      padding: 0 15px;
       align-content: flex-start;
 
       .imageWrapper {
@@ -37,7 +37,7 @@
       flex: 1;
       padding: 0 15px;
       box-sizing: border-box;
-      align-content: center;
+      align-content: flex-end;
       align-items: center;
       margin-top: 5%;
 
