@@ -1,128 +1,62 @@
-import classNames from 'classnames/bind';
-import {
-  FaFacebookF,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-  FaYoutube,
-} from 'react-icons/fa';
-import appConfig from 'app.config.js';
+import React from 'react';
+import Image from 'next/image';
 
-import { NavigationMenu } from '../';
+import styles from './footer.module.scss';
 
-import styles from './Footer.module.scss';
-
-let cx = classNames.bind(styles);
-
-/**
- * The Blueprint's Footer component
- * @return {React.ReactElement} The Footer component.
- */
-export default function Footer({ menuItems }) {
+export default function Footer() {
   return (
-    <footer className={cx('footer')}>
-      <div className="container">
-        {appConfig?.socialLinks && (
-          <div className={cx('social-links')}>
-            <ul aria-label="Social media">
-              {appConfig.socialLinks?.twitterUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.twitterUrl}
-                  >
-                    <FaTwitter title="Twitter" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.facebookUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.facebookUrl}
-                  >
-                    <FaFacebookF
-                      title="Facebook"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.instagramUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.instagramUrl}
-                  >
-                    <FaInstagram
-                      title="Instagram"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.youtubeUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.youtubeUrl}
-                  >
-                    <FaYoutube title="YouTube" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.githubUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.githubUrl}
-                  >
-                    <FaGithub title="GitHub" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.linkedinUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.linkedinUrl}
-                  >
-                    <FaLinkedinIn
-                      title="LinkedIn"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-        )}
-
-        <NavigationMenu className={cx('nav')} menuItems={menuItems} />
-
-        <div className={cx('copyright')}>
-          &copy; {new Date().getFullYear()} Blueprint Media &#183; Powered By{' '}
-          <a href="https://wpengine.com/atlas">Atlas</a>
+      <footer>
+        <div className={styles.aaroncontainer}>
+          <div className={""}>
+            <div className={styles.footercontainer}> {/* Add this line */}
+              <div className={styles.col1}>
+                <div className={styles.imagewrap}>
+                  <Image
+                      src="/Users/aaronkuniansky-altman/Local Sites/headlesstestingmay/fixdapp-logo.webp" // The path to your image file
+                      alt="LOGO" // A brief description of the image for accessibility
+                      width={300} // Width of the image
+                      height={96} // Height of the image
+                  />
+                </div>
+              </div>
+              <div className={styles.col2}>
+                <p className={styles.siteDescription}>About</p>
+                <ul className={styles.uaaronlist}>
+                  <li>About FIXD</li>
+                  <li>Careers</li>
+                  <li>Press</li>
+                  <li>Reviews</li>
+                </ul>
+              </div>
+              <div className={styles.col3}>
+                <p className={styles.siteDescription}>CONTACT US</p>
+                <ul className={styles.uaaronlist}>
+                  <li>(925) 854-1766</li>
+                  <li>support@fixdapp.com</li>
+                  <li>999 Peachtree St NE Suite 840, Atlanta, GA 30309</li>
+                </ul>
+              </div>
+              <div className={styles.col4}>
+                <p className={styles.siteDescription}>HELP</p>
+                <ul className={styles.uaaronlist}>
+                  <li>Help Center</li>
+                  <li>Contact Support</li>
+                  <li>FIXD app and sensor FAQ</li>
+                  <li>Returns and warranty</li>
+                  <li>Manage subscription</li>
+                </ul>
+              </div>
+              <div className={styles.col5}>
+                <p className={styles.siteDescription}>Legal</p>
+                <ul className={styles.uaaronlist}>
+                  <li>Terms of Use</li>
+                  <li>Privacy Policy</li>
+                  <li>Advertising Disclosure</li>
+                </ul>
+              </div>
+            </div>
+          </div>{/* Close the added div */}
         </div>
-      </div>
-    </footer>
+      </footer>
   );
-}
+};
