@@ -32,9 +32,9 @@ export default function Header({ className, menuItems }) {
             <Link href="/">
               <a title="Home">
                 <Image
-                  src="/logo.png"
-                  width={400}
-                  height={80}
+                  src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/Headless-LOGO.png"
+                  width={496}
+                  height={111}
                   alt="Blueprint media logo"
                   layout="responsive"
                 />
