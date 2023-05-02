@@ -47,7 +47,7 @@ export default function Component() {
 
       <Main className={styles.home}>
         <div className="container">
-          <section className="hero text-center" style={{ margintop: '40px'}} >
+          <section className="hero text-center" style={{ marginTop: '40px'}} >
             <Heading className={styles.heading} level="h1">
               Welcome to your Blueprint
             </Heading>
