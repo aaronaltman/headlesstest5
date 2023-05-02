@@ -20,7 +20,7 @@ const AaronHero = () => {
                     </div>
                     <div className={styles.rightCol}>
                         <div className={styles.content}>
-                            <h1 className={styles.heading}>UNLEASH THE FULL POTENTIAL OF YOUR WORDPRESS SITE</h1>
+                            <h1 className={styles.heading}>UNLEASH THE FULL POTENTIAL OF YOUR WORDPRESS SITE </h1>
                             <p className={styles.text}>
                                 Your website is your most valuable digital asset. Let us help you unlock its full potential with our expertise in headless WordPress development. We create seamless and engaging digital experiences that convert visitors into customers. Save time and money while we build a website that elevates your brand and drives results.
                             </p>
