@@ -1,30 +1,50 @@
 import React from 'react';
-import { Button, Container, Grid, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
 
-const AaronTopBar = () => {
+const TopBar = () => {
     return (
-        <Box sx={{ backgroundColor: '#4caf50', width: '100%' }}>
-            <Container maxWidth="lg">
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item xs={12} md={6}>
-                        <div style={{ color: '#fff' }}>
-                            <h1>Left Column Text</h1>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend velit vel sapien laoreet blandit. Mauris tempor dictum mauris, ac sodales nibh pharetra eu. Donec ac vestibulum ipsum, quis sollicitudin libero. Nulla nec nisl enim.
-                            </p>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            <Button variant="contained" sx={{ backgroundColor: '#8bc34a', color: '#fff' }}>
-                                Green Button
-                            </Button>
-                        </div>
-                    </Grid>
-                </Grid>
-            </Container>
+        <Box sx={{ position: 'fixed', top: 0, width: '100%', zIndex: 999 }}>
+            <AppBar position="sticky" sx={{ backgroundColor: '#4caf50' }}>
+                <Toolbar>
+                    <div style={{ color: '#fff', fontWeight: 'bold' }}>
+                        One Line of Text
+                    </div>
+                    <div style={{ marginLeft: 'auto' }}>
+                        <Button
+                            variant="outlined"
+                            sx={{ color: '#fff', borderColor: '#000', borderRadius: 0 }}
+                        >
+                            Button
+                        </Button>
+                    </div>
+                </Toolbar>
+            </AppBar>
+            <Box
+                sx={{
+                    backgroundColor: '#4caf50',
+                    color: '#fff',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '0 16px',
+                }}
+            >
+                <div style={{ fontWeight: 'bold' }}>One Line of Text</div>
+                <Button
+                    variant="outlined"
+                    sx={{
+                        color: '#fff',
+                        borderColor: '#000',
+                        borderRadius: 0,
+                        padding: '6px 12px',
+                    }}
+                >
+                    Button
+                </Button>
+            </Box>
         </Box>
     );
 };
 
-export default AaronTopBar;
+export default TopBar;
