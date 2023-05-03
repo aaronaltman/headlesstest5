@@ -23,10 +23,10 @@ export default function Albums() {
 
     return (
         <div>
-            {data.albums.nodes.map(({ albumtitle, id, uri }) => (
+            {data.albums.nodes.map(({ albumTitle, id, uri }) => (
                 <div key={id}>
                     <h3>Album Title</h3>
-                    <p>{albumtitle}</p>
+                    <p>{albumTitle}</p>
                     <br />
                     <b>Album ID:</b>
                     <p>{id}</p>
