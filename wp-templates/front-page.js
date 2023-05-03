@@ -18,7 +18,6 @@ import {
   Posts,
   Testimonials,
     Albums,
-    AaronHero2,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -46,12 +45,9 @@ export default function Component() {
         description={siteDescription}
         menuItems={primaryMenu}
       />
-
-      <AaronHero />
       <section>
-        <AaronHero2 />
+      <AaronHero />
       </section>
-
       <Main className={styles.home}>
         <div className="container">
           <section>
