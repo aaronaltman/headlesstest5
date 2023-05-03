@@ -75,12 +75,12 @@
       height: 100%;
       padding: 1rem;
       font-weight: $font-weight-bold;
-      color: var(--color-white);
+      color: black;
 
       &:hover,
       &:focus {
         border: 1px solid var(--color-white);
-        color: var(--color-white);
+        color: var(--color-black);
         padding: 0.9rem;
       }
     }
