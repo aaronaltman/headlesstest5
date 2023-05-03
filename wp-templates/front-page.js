@@ -3,7 +3,9 @@ import * as MENUS from 'constants/menus';
 import { useQuery, gql } from '@apollo/client';
 import { FaArrowRight } from 'react-icons/fa';
 import styles from 'styles/pages/_Home.module.scss';
-import AaronHero from 'components/AaronHero/AaronHero.js';
+
+import AaronHero from '/components/AaronHero/AaronHero.js';
+
 import {
   Main,
   Button,
@@ -16,6 +18,7 @@ import {
   Posts,
   Testimonials,
     Albums,
+    AaronHero2,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -45,6 +48,9 @@ export default function Component() {
       />
 
       <AaronHero />
+      <section>
+        <AaronHero2 />
+      </section>
 
       <Main className={styles.home}>
         <div className="container">

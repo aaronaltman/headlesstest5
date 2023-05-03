@@ -27,6 +27,7 @@ const AaronHero = () => {
                                 <p className={styles.text}>
                                     The FIXD sensor and free app tells you why your check engine light is on to help you save time and money
                                 </p>
+                                <div className={styles.aaronpadding}></div>
                                 <Button variant="contained" color="primary">Learn More</Button>
                             </div>
                         </div>
