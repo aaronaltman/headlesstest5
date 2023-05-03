@@ -3,16 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import client from '/apolloClient';
 
-import {
-    Card,
-    CardMedia,
-    CardContent,
-    Typography,
-    Modal,
-    Box,
-    Fade,
-    Backdrop,
-} from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Modal, Box, Fade, Backdrop } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 const GET_ALBUMS = gql`
@@ -44,9 +35,12 @@ export default function ImageGallery() {
         setActiveAlbum(album);
     };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    function handleClose(event, reason) {
+        if (reason === 'backdropClick' || reason === 'escapeKeyDown') {
+            setOpen(false);
+            document.body.style.overflow = '';
+        }
+    }
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -59,12 +53,7 @@ export default function ImageGallery() {
                         <Grid item xs={12} sm={6} md={4} key={album.id}>
                             <Card onClick={() => handleOpen(album)}>
                                 {album.albumCover && (
-                                    <CardMedia
-                                        component="img"
-                                        alt={album.albumTitle}
-                                        height="140"
-                                        image={album.albumCover.sourceUrl}
-                                    />
+                                    <CardMedia component="img" alt={album.albumTitle} height="140" image={album.albumCover.sourceUrl} />
                                 )}
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
@@ -85,7 +74,7 @@ export default function ImageGallery() {
                 BackdropComponent={Backdrop}
                 BackdropProps={{
                     sx: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
                         zIndex: (theme) => theme.zIndex.drawer + 1,
                     },
                 }}
@@ -106,13 +95,7 @@ export default function ImageGallery() {
                     >
                         {activeAlbum && (
                             <>
-                                <CardMedia
-                                    component="img"
-                                    alt={activeAlbum.albumTitle}
-                                    height="400"
-                                    image={activeAlbum.albumCover.sourceUrl}
-                                    sx={{ mb: 2 }}
-                                />
+                                <CardMedia component="img" alt={activeAlbum.albumTitle} image={activeAlbum.albumCover.sourceUrl} />
                                 <Typography id="modal-title" variant="h6" component="h2">
                                     {activeAlbum.albumTitle}
                                 </Typography>
