@@ -15,6 +15,7 @@ import {
   Footer,
   Posts,
   Testimonials,
+    Albums,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -47,6 +48,9 @@ export default function Component() {
 
       <Main className={styles.home}>
         <div className="container">
+          <section>
+            <Albums />
+          </section>
           <section className="hero text-center" style={{ marginTop: '40px'}} >
             <Heading className={styles.heading} level="h1">
               Welcome to your Blueprint

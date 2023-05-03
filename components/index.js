@@ -24,6 +24,7 @@ import SearchResults from './SearchResults';
 import LoadingSearchResult from './LoadingSearchResult';
 import SearchRecommendations from './SearchRecommendations';
 import AaronHero from './AaronHero';
+import Albums from './Albums/Albums'
 
 export {
   AaronHero,
@@ -52,4 +53,5 @@ export {
   SearchResults,
   SearchRecommendations,
   LoadingSearchResult,
+    Albums,
 };
