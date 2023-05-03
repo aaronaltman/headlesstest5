@@ -3,7 +3,8 @@ import { gql, useQuery } from '@apollo/client';
 
 import client from '/apolloClient';
 
-import { Card, CardMedia, CardContent, Typography, Modal, Box, Grid } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Modal, Box, Fade } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 const GET_ALBUMS = gql`
   query GetAlbums {
@@ -61,9 +62,6 @@ export default function ImageGallery() {
                                 <Typography gutterBottom variant="h5" component="div">
                                     {album.albumTitle}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Album ID: {album.id}
-                                </Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -74,31 +72,37 @@ export default function ImageGallery() {
                 onClose={handleClose}
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
+                closeAfterTransition
             >
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '80%',
-                        maxWidth: 600,
-                        bgcolor: 'background.paper',
-                        boxShadow: 24,
-                        p: 4,
-                    }}
-                >
-                    {activeAlbum && (
-                        <>
-                            <Typography id="modal-title" variant="h6" component="h2">
-                                {activeAlbum.albumTitle}
-                            </Typography>
-                            <Typography id="modal-description" sx={{ mt: 2 }}>
-                                Album ID: {activeAlbum.id}
-                            </Typography>
-                        </>
-                    )}
-                </Box>
+                <Fade in={open}>
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '80%',
+                            maxWidth: 600,
+                            bgcolor: 'background.paper',
+                            boxShadow: 24,
+                            p: 4,
+                        }}
+                    >
+                        {activeAlbum && (
+                            <>
+                                <CardMedia
+                                    component="img"
+                                    alt={activeAlbum.albumTitle}
+                                    height="140"
+                                    image={activeAlbum.albumCover.sourceUrl}
+                                />
+                                <Typography id="modal-title" variant="h6" component="h2">
+                                    {activeAlbum.albumTitle}
+                                </Typography>
+                            </>
+                        )}
+                    </Box>
+                </Fade>
             </Modal>
         </div>
     );
