@@ -42,7 +42,7 @@ export default function Component() {
       <SEO title={siteTitle} description={siteDescription} />
 <AaronTopBar />
 
-      <Header style={{ marginTop: '80px' }}
+      <Header
         title={siteTitle}
         description={siteDescription}
         menuItems={primaryMenu}
