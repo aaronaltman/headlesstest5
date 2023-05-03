@@ -3,68 +3,103 @@ import { gql, useQuery } from '@apollo/client';
 
 import client from '/apolloClient';
 
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Modal, Box, Grid } from '@mui/material';
 
 const GET_ALBUMS = gql`
   query GetAlbums {
     albums(first: 3) {
       nodes {
         albumTitle
+        albumDate
         id
         uri
+        albumCover {
+          sourceUrl
+        }
       }
     }
   }
 `;
 
-export default function Albums() {
+export default function ImageGallery() {
     const { loading, error, data } = useQuery(GET_ALBUMS, {
         client: client,
     });
 
     const [open, setOpen] = useState(false);
-    const [activeAlbumTitle, setActiveAlbumTitle] = useState('');
+    const [activeAlbum, setActiveAlbum] = useState(null);
 
-    const handleClickOpen = (albumTitle) => {
+    const handleOpen = (album) => {
         setOpen(true);
-        setActiveAlbumTitle(albumTitle);
+        setActiveAlbum(album);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'backdropClick' || reason === 'escapeKeyDown') {
+            setOpen(false);
+        }
     };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <Grid container spacing={3}>
-            {data.albums.nodes.map(({ albumTitle, id, uri }) => (
-                <Grid item xs={12} sm={4} key={id}>
-                    <h3>Album Title - {albumTitle}</h3>
-                    <Button variant="outlined" color="primary" onClick={() => handleClickOpen(albumTitle)}>
-                        View Details
-                    </Button>
-                    <br />
-                    <b>Album ID:</b>
-                    <p>{id}</p>
-                    <br />
-                    <b>Album URI:</b>
-                    <p>{uri}</p>
-                    <br />
-                </Grid>
-            ))}
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Album Details</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>Album Title: {activeAlbumTitle}</DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Close
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </Grid>
+        <div>
+            <Grid container spacing={3}>
+                {data.albums.nodes.map((album) => (
+                    <Grid item xs={12} sm={6} md={4} key={album.id}>
+                        <Card onClick={() => handleOpen(album)}>
+                            {album.albumCover && (
+                                <CardMedia
+                                    component="img"
+                                    alt={album.albumTitle}
+                                    height="140"
+                                    image={album.albumCover.sourceUrl}
+                                />
+                            )}
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {album.albumTitle}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Album ID: {album.id}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-title"
+                aria-describedby="modal-description"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '80%',
+                        maxWidth: 600,
+                        bgcolor: 'background.paper',
+                        boxShadow: 24,
+                        p: 4,
+                    }}
+                >
+                    {activeAlbum && (
+                        <>
+                            <Typography id="modal-title" variant="h6" component="h2">
+                                {activeAlbum.albumTitle}
+                            </Typography>
+                            <Typography id="modal-description" sx={{ mt: 2 }}>
+                                Album ID: {activeAlbum.id}
+                            </Typography>
+                        </>
+                    )}
+                </Box>
+            </Modal>
+        </div>
     );
 }
