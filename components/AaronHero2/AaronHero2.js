@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button, Container, Grid, Typography } from '@mui/material';
+import { Button, Container, Grid } from '@mui/material';
 
 const AaronHero2 = () => {
     return (
@@ -19,15 +19,11 @@ const AaronHero2 = () => {
                     </Grid>
                     <Grid item md={6}>
                         <div>
-                            <Typography variant="h3" component="h3" gutterBottom>
-                                YOUR POCKET CAR EXPERT
-                            </Typography>
-                            <Typography variant="h1" component="h1" gutterBottom>
-                                Save money on vehicle repairs & car mechanic bills
-                            </Typography>
-                            <Typography variant="body1" component="p" gutterBottom>
+                            <h3 style={{ fontSize: '1.5rem' }}>YOUR POCKET CAR EXPERT</h3>
+                            <h1 style={{ fontSize: '2.5rem' }}>Save money on vehicle repairs & car mechanic bills</h1>
+                            <p style={{ fontSize: '1.1rem' }}>
                                 The FIXD sensor and free app tells you why your check engine light is on to help you save time and money
-                            </Typography>
+                            </p>
                             <div style={{ marginTop: '2rem' }}>
                                 <Button variant="contained" color="primary">
                                     Learn More
