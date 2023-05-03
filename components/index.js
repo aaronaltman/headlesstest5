@@ -27,6 +27,8 @@ import AaronHero from './AaronHero/AaronHero.js';
 import Albums from './Albums/Albums'
 import AaronHero2 from './AaronHero2/AaronHero2.js';
 
+import AaronTopBar from '/components/AaronTopBar/AaronTopBar.js';
+
 export {
   AaronHero,
   Button,
@@ -56,4 +58,5 @@ export {
   LoadingSearchResult,
     Albums,
     AaronHero2,
+    AaronTopBar,
 };

@@ -18,6 +18,7 @@ import {
   Posts,
   Testimonials,
     Albums,
+    AaronTopBar,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -39,7 +40,7 @@ export default function Component() {
   return (
     <>
       <SEO title={siteTitle} description={siteDescription} />
-
+<AaronTopBar />
       <Header
         title={siteTitle}
         description={siteDescription}
