@@ -6,7 +6,7 @@ const GET_ALBUMS = gql`
   query GetAlbums {
     albums(first: 10) {
       nodes {
-        albumtitle
+        albumTitle
         id
         uri
       }
