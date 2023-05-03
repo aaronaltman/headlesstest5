@@ -23,6 +23,7 @@ export default function Header({ className, menuItems }) {
     isNavShown ? cx('show') : undefined
   );
 
+
   return (
     <header className={headerClasses}>
       <SkipNavigationLink />

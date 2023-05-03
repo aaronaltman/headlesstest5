@@ -1,10 +1,11 @@
+// TopBar.js
 import React from 'react';
 import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
 
 const TopBar = () => {
     return (
         <Box sx={{ position: 'fixed', width: '100%', zIndex: 999 }}>
-            <AppBar position="static" sx={{ backgroundColor: '#4caf50' }}>
+            <AppBar position="sticky" sx={{ backgroundColor: '#4caf50' }}>
                 <Container maxWidth="lg">
                     <Toolbar
                         sx={{
