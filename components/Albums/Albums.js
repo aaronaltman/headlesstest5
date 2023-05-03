@@ -3,7 +3,16 @@ import { gql, useQuery } from '@apollo/client';
 
 import client from '/apolloClient';
 
-import { Card, CardMedia, CardContent, Typography, Modal, Box, Fade } from '@mui/material';
+import {
+    Card,
+    CardMedia,
+    CardContent,
+    Typography,
+    Modal,
+    Box,
+    Fade,
+    Backdrop,
+} from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 const GET_ALBUMS = gql`
@@ -35,10 +44,8 @@ export default function ImageGallery() {
         setActiveAlbum(album);
     };
 
-    const handleClose = (event, reason) => {
-        if (reason === 'backdropClick' || reason === 'escapeKeyDown') {
-            setOpen(false);
-        }
+    const handleClose = () => {
+        setOpen(false);
     };
 
     if (loading) return <p>Loading...</p>;
@@ -47,27 +54,27 @@ export default function ImageGallery() {
     return (
         <div>
             <Box sx={{ mt: 10 }}>
-            <Grid container spacing={3}>
-                {data.albums.nodes.map((album) => (
-                    <Grid item xs={12} sm={6} md={4} key={album.id}>
-                        <Card onClick={() => handleOpen(album)}>
-                            {album.albumCover && (
-                                <CardMedia
-                                    component="img"
-                                    alt={album.albumTitle}
-                                    height="140"
-                                    image={album.albumCover.sourceUrl}
-                                />
-                            )}
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {album.albumTitle}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
+                <Grid container spacing={3}>
+                    {data.albums.nodes.map((album) => (
+                        <Grid item xs={12} sm={6} md={4} key={album.id}>
+                            <Card onClick={() => handleOpen(album)}>
+                                {album.albumCover && (
+                                    <CardMedia
+                                        component="img"
+                                        alt={album.albumTitle}
+                                        height="140"
+                                        image={album.albumCover.sourceUrl}
+                                    />
+                                )}
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {album.albumTitle}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
             </Box>
             <Modal
                 open={open}
@@ -75,6 +82,13 @@ export default function ImageGallery() {
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
                 closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    sx: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        zIndex: (theme) => theme.zIndex.drawer + 1,
+                    },
+                }}
             >
                 <Fade in={open}>
                     <Box
@@ -95,8 +109,9 @@ export default function ImageGallery() {
                                 <CardMedia
                                     component="img"
                                     alt={activeAlbum.albumTitle}
-                                    height="140"
+                                    height="400"
                                     image={activeAlbum.albumCover.sourceUrl}
+                                    sx={{ mb: 2 }}
                                 />
                                 <Typography id="modal-title" variant="h6" component="h2">
                                     {activeAlbum.albumTitle}
