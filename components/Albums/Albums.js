@@ -46,6 +46,7 @@ export default function ImageGallery() {
 
     return (
         <div>
+            <Box sx={{ mt: 10 }}>
             <Grid container spacing={3}>
                 {data.albums.nodes.map((album) => (
                     <Grid item xs={12} sm={6} md={4} key={album.id}>
@@ -67,6 +68,7 @@ export default function ImageGallery() {
                     </Grid>
                 ))}
             </Grid>
+            </Box>
             <Modal
                 open={open}
                 onClose={handleClose}
