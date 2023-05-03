@@ -33,8 +33,8 @@ export default function Header({ className, menuItems }) {
               <a title="Home">
                 <Image
                   src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/fixdapp-logo.webp"
-                  width={300}
-                  height={96}
+                  width={150}
+                  height={48}
                   alt="Blueprint media logo"
                   layout="responsive"
                 />
