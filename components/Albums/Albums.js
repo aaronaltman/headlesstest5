@@ -25,8 +25,7 @@ export default function Albums() {
         <div>
             {data.albums.nodes.map(({ albumTitle, id, uri }) => (
                 <div key={id}>
-                    <h3>Album Title</h3>
-                    <p>{albumTitle}</p>
+                    <h3>Album Title - {albumTitle}</h3>
                     <br />
                     <b>Album ID:</b>
                     <p>{id}</p>
