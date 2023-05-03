@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Button } from '@mui/material';
 
 import styles from './AaronHero.module.scss';
 
@@ -8,28 +9,29 @@ const AaronHero = () => {
         <section className={styles.hero}>
             <div className={styles.container}>
                 <div className={"container"}>
-                <div className={styles.row}>
-                    <div className={styles.leftCol}>
-                        <div className={styles.imageWrapper}>
-                            <Image
-                                src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/pexels-pixabay-73871-scaled.jpeg"
-                                alt="Fixdapp way of fixing cars"
-                                width={1024}
-                                height={685}
-                            />
+                    <div className={styles.row}>
+                        <div className={styles.leftCol}>
+                            <div className={styles.imageWrapper}>
+                                <Image
+                                    src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/phones-app-transparent-large.webp"
+                                    alt="Fixdapp way of fixing cars"
+                                    width={972}
+                                    height={874}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.rightCol}>
-                        <div className={styles.content}>
-                            <h1 className={styles.heading}>UNLEASH THE FULL POTENTIAL OF YOUR WORDPRESS SITE </h1>
-                            <p className={styles.text}>
-                                Your website is your most valuable digital asset. Let us help you unlock its full potential with our expertise in headless WordPress development. We create seamless and engaging digital experiences that convert visitors into customers. Save time and money while we build a website that elevates your brand and drives results.
-                            </p>
-                            <button className={styles.button}>Learn More</button>
+                        <div className={styles.rightCol}>
+                            <div className={styles.content}>
+                                <h3>YOUR POCKET CAR EXPERT</h3>
+                                <h1>Save money on vehicle repairs & car mechanic bills</h1>
+                                <p className={styles.text}>
+                                    The FIXD sensor and free app tells you why your check engine light is on to help you save time and money
+                                </p>
+                                <Button variant="contained" color="primary">Learn More</Button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </section>
     );
