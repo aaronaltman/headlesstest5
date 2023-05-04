@@ -9,14 +9,14 @@ const Footer = styled('footer')(({ theme }) => ({
     color: 'white',
 }));
 
-export default function CustomFooter() {
+export default function AaronFooter() {
     return (
         <Footer>
             <Container maxWidth="lg">
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={4}>
                         <Image
-                            src="/path/to/your/logo.png" // Replace with the path to your logo
+                            src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/fixdapp-logo.webp" // Replace with the path to your logo
                             alt="Logo"
                             width={150}
                             height={48}

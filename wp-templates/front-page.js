@@ -20,6 +20,7 @@ import {
   Albums,
   AaronTopBar,
   AaronHero2,
+    AaronFooter,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -121,6 +122,9 @@ export default function Component() {
           </section>
         </div>
       </Main>
+      <section>
+        <AaronFooter />
+      </section>
       <Footer />
     </>
   );
