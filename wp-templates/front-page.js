@@ -17,8 +17,9 @@ import {
   Footer,
   Posts,
   Testimonials,
-    Albums,
-    AaronTopBar,
+  Albums,
+  AaronTopBar,
+  AaronHero2,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -54,6 +55,9 @@ export default function Component() {
         <div className="container">
           <section>
             <Albums />
+          </section>
+          <section>
+            <AaronHero2 />
           </section>
           <section className="hero text-center" style={{ marginTop: '40px'}} >
             <Heading className={styles.heading} level="h1">
