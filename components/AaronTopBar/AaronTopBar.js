@@ -5,22 +5,21 @@ import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
 const TopBar = () => {
     return (
         <Box sx={{ position: 'fixed', width: '100%', zIndex: 999 }}>
-            <AppBar position="sticky" sx={{ backgroundColor: '#23a25a' }}>
+            <AppBar position="sticky" sx={{ backgroundColor: '#23a25a', height: '3rem' }}>
                 <Container maxWidth="lg">
                     <Toolbar
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center', // Center the content horizontally
-                            flexGrow: 1,
-                            width: '100%', // Add this line
+                            justifyContent: 'center',
+                            minHeight: '3rem', // Update the toolbar height
                         }}
                     >
                         <div
                             style={{
                                 color: '#fff',
                                 fontWeight: 'bold',
-                                marginRight: 'auto',
+                                marginRight: '1rem', // Adjust the spacing between the text and button
                             }}
                         >
                             One Line of Text
@@ -31,7 +30,6 @@ const TopBar = () => {
                                 color: '#000',
                                 borderColor: '#000',
                                 borderRadius: 0,
-                                marginLeft: 'auto',
                                 backgroundColor: '#fff', // Change the button background color
                             }}
                         >
