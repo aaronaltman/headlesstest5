@@ -31,7 +31,7 @@ const TopBar = () => {
                                 borderColor: '#000',
                                 borderRadius: 0,
                                 backgroundColor: '#fff', // Change the button background color
-                                fontSize:'`13`px',
+                                fontSize: '15px',
                             }}
                         >
                             SAVE 67% NOW
