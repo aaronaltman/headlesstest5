@@ -62,11 +62,12 @@ export default function Component() {
           </section>
           <section className="hero text-center" style={{ marginTop: '40px'}} >
             <Heading className={styles.heading} level="h1">
-              Welcome to your Blueprint
+              Car Care
             </Heading>
+            <h2>Made Simple</h2>
             <p className={styles.description}>
-              Achieve unprecedented performance with modern frameworks and the
-              world&apos;s #1 open source CMS in one powerful headless platform.{' '}
+              Looking for objective advice, expert info and helpful tools to answer your car questions?
+              {' '}
             </p>
             <div className={styles.actions}>
               <Button styleType="secondary" href="/contact-us">
