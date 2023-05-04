@@ -12,7 +12,7 @@ import {
   EntryHeader,
   NavigationMenu,
   FeaturedImage,
-  SEO,
+  SEO, AaronTopBar,
 } from '../components';
 
 export default function Component(props) {
@@ -38,6 +38,9 @@ export default function Component(props) {
         description={siteDescription}
         imageUrl={featuredImage?.node?.sourceUrl}
       />
+      <section>
+        <AaronTopBar />
+      </section>
       <Header
         title={siteTitle}
         description={siteDescription}
