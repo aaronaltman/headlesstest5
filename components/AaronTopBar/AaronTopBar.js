@@ -6,7 +6,7 @@ const TopBar = () => {
     return (
         <Box sx={{ position: 'fixed', width: '100%', zIndex: 999 }}>
             <AppBar position="sticky" sx={{ backgroundColor: '#23a25a', height: '3rem' }}>
-                <Container maxWidth="lg">
+                <Container maxWidth="xs">
                     <Toolbar
                         sx={{
                             display: 'flex',
