@@ -1,90 +1,39 @@
-@import 'styles/Variables';
-
-.aaronpadding{
-margin-top:15px;
-}
-
 .hero {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 2% 0;
-  background-color: #e5eaf4;
-
-  .container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    .leftCol {
-      flex: 1;
-      padding: 0 20px;
-      align-content: flex-start;
-
-      .imageWrapper {
-        width: 100%;
-        height: 100%; // Change height to 100% for full size
-        img {
-          object-fit: cover; // Add this line to maintain image aspect ratio
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-    .rightCol {
-      flex: 1;
-      padding: 0 20px;
-      box-sizing: border-box;
-      align-content: flex-end;
-      align-items: center;
-      margin-top: 5%;
-
-      .content {
-        h1 {
-          font-size: 25px;
-          margin-bottom: 15px;
-        }
-        .text {
-          font-size: 14px;
-          margin-bottom: 15px;
-        }
-
-        .button {
-          margin-top:15px;
-          display: inline-block;
-          padding: 12px 24px;
-          font-size: 16px;
-          font-weight: bold;
-          border: 1px solid black;
-          border-radius: 5px;
-          cursor: pointer;
-          background-color: green;
-          color: #ffffff;
-          transition: background-color 0.3s;
-        }
-
-        .button:hover {
-          background-color: #d9860a;
-        }
-      }
-    }
-  }
+  // Your hero styles
 }
 
-@media (max-width: $breakpoint-small) {
-  .hero {
-    .row {
-      .leftCol,
-      .rightCol {
-        flex: 100%;
-        margin-bottom: 20px;
-      }
-    }
+.container {
+  // Your container styles
+}
+
+.imageWrapper {
+  // Your imageWrapper styles
+}
+
+.content {
+  // Your content styles
+}
+
+.subtitle {
+  // Your subtitle styles
+}
+
+.title {
+  // Your title styles
+}
+
+.text {
+  // Your text styles
+}
+
+.aaronpadding {
+  // Your aaronpadding styles
+}
+
+.button {
+  background-color: #4caf50;
+
+  &:hover {
+    background-color: darken(#4caf50, 10%);
   }
 }

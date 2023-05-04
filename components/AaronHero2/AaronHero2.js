@@ -1,14 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button, Container, Grid } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
+
+import styles from '/components/AaronHero2/AaronHero2.module.scss';
 
 const AaronHero2 = () => {
     return (
-        <section style={{ backgroundColor: '#f2f2f2' }}>
-            <Container>
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item md={6}>
-                        <div style={{ maxWidth: '100%', height: 'auto' }}>
+        <section className={styles.hero}>
+            <div className={styles.container}>
+                <Grid container spacing={4}>
+                    <Grid item xs={12} md={6}>
+                        <div className={styles.imageWrapper}>
                             <Image
                                 src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/phones-app-transparent-large.webp"
                                 alt="Fixdapp way of fixing cars"
@@ -17,22 +19,25 @@ const AaronHero2 = () => {
                             />
                         </div>
                     </Grid>
-                    <Grid item md={6}>
-                        <div>
-                            <h3 style={{ fontSize: '1.5rem' }}>YOUR POCKET CAR EXPERT</h3>
-                            <h1 style={{ fontSize: '2.5rem' }}>Save money on vehicle repairs & car mechanic bills</h1>
-                            <p style={{ fontSize: '1.1rem' }}>
+                    <Grid item xs={12} md={6}>
+                        <div className={styles.content}>
+                            <Typography variant="h5" component="h3" className={styles.subtitle}>
+                                YOUR POCKET CAR EXPERT
+                            </Typography>
+                            <Typography variant="h2" component="h1" className={styles.title}>
+                                Save money on vehicle repairs & car mechanic bills
+                            </Typography>
+                            <Typography variant="body1" className={styles.text}>
                                 The FIXD sensor and free app tells you why your check engine light is on to help you save time and money
-                            </p>
-                            <div style={{ marginTop: '2rem' }}>
-                                <Button variant="contained" color="primary">
-                                    Learn More
-                                </Button>
-                            </div>
+                            </Typography>
+                            <div className={styles.aaronpadding}></div>
+                            <Button variant="contained" className={styles.button}>
+                                Get FIXD 67% Off
+                            </Button>
                         </div>
                     </Grid>
                 </Grid>
-            </Container>
+            </div>
         </section>
     );
 };
