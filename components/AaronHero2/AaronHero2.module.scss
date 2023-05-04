@@ -1,5 +1,5 @@
 .hero {
-  // Your hero styles
+   background-color:#e5eaf5;
 }
 
 .container {
@@ -11,8 +11,13 @@
 }
 
 .content {
-  // Your content styles
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 1rem; // Adjust the gap value to create more or less space between the items
 }
+
 
 .subtitle {
   // Your subtitle styles
