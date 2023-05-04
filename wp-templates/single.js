@@ -10,7 +10,7 @@ import {
   ContentWrapper,
   FeaturedImage,
   SEO,
-  TaxonomyTerms,
+  TaxonomyTerms,AaronTopBar,
 } from 'components';
 import { pageTitle } from 'utilities';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
@@ -38,6 +38,9 @@ export default function Component(props) {
         description={siteDescription}
         imageUrl={featuredImage?.node?.sourceUrl}
       />
+      <section>
+        <AaronTopBar />
+      </section>
       <Header
         title={siteTitle}
         description={siteDescription}
