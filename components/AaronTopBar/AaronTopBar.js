@@ -22,7 +22,7 @@ const TopBar = () => {
                                 marginRight: '1rem', // Adjust the spacing between the text and button
                             }}
                         >
-                            One Line of Text
+                            Shop our Spring Sale!
                         </div>
                         <Button
                             variant="outlined"
@@ -33,7 +33,7 @@ const TopBar = () => {
                                 backgroundColor: '#fff', // Change the button background color
                             }}
                         >
-                            Button
+                            SAVE 67% NOW
                         </Button>
                     </Toolbar>
                 </Container>
