@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
 const TopBar = () => {
     return (
         <Box sx={{ position: 'fixed', width: '100%', zIndex: 999 }}>
-            <AppBar position="sticky" sx={{ backgroundColor: '#23a25a', height: '4rem', textAlign:'center', }}>
+            <AppBar position="sticky" sx={{ backgroundColor: '#23a25a', height: '4rem' }}>
                 <Container maxWidth="xs">
                     <Toolbar
                         sx={{
