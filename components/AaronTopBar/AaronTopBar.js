@@ -12,7 +12,7 @@ const TopBar = () => {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            minHeight: '3rem', // Update the toolbar height
+                            minHeight: '4rem', // Update the toolbar height
                         }}
                     >
                         <div
