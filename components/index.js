@@ -26,6 +26,7 @@ import SearchRecommendations from './SearchRecommendations';
 import AaronHero from './AaronHero/AaronHero.js';
 import Albums from './Albums/Albums'
 import AaronHero2 from './AaronHero2/AaronHero2.js';
+import AaronFooter from './AaronFooter/AaronFooter.js';
 
 import AaronTopBar from '/components/AaronTopBar/AaronTopBar.js';
 
@@ -56,7 +57,8 @@ export {
   SearchResults,
   SearchRecommendations,
   LoadingSearchResult,
-    Albums,
-    AaronHero2,
-    AaronTopBar,
+  Albums,
+  AaronHero2,
+  AaronTopBar,
+  AaronFooter,
 };
