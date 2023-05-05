@@ -20,7 +20,7 @@ import {
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
-const postsPerPage = 3;
+const postsPerPage = 6;
 
 export default function Component() {
   const { data, loading } = useQuery(Component.query, {
