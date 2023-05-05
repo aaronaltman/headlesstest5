@@ -9,6 +9,13 @@ const Footer = styled('footer')(({ theme }) => ({
     color: 'black',
 }));
 
+const GreenDivider = styled('hr')({
+    borderColor: 'green',
+    borderWidth: '2px',
+    marginTop: 8,
+    marginBottom: 16,
+});
+
 export default function AaronFooter() {
     return (
         <Footer>
@@ -20,41 +27,48 @@ export default function AaronFooter() {
                             alt="Logo"
                             width={200}
                             height={64}
+                            layout="responsive"
+                            quality={90}
+                            priority={true}
                         />
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h5">ABOUT</Typography>
+                        <Typography variant="h4">ABOUT</Typography>
+                        <GreenDivider />
                         <Box>
-                            <Typography fontSize="1.2rem">About FIXD</Typography>
-                            <Typography fontSize="1.2rem">Careers</Typography>
-                            <Typography fontSize="1.2rem">Press</Typography>
-                            <Typography fontSize="1.2rem">Reviews</Typography>
+                            <Typography fontSize="1.4rem">About FIXD</Typography>
+                            <Typography fontSize="1.4rem">Careers</Typography>
+                            <Typography fontSize="1.4rem">Press</Typography>
+                            <Typography fontSize="1.4rem">Reviews</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h5">CONTACT US</Typography>
+                        <Typography variant="h4">CONTACT US</Typography>
+                        <GreenDivider />
                         <Box>
-                            <Typography fontSize="1.2rem">(925) 854-1766</Typography>
-                            <Typography fontSize="1.2rem">support@fixdapp.com</Typography>
-                            <Typography fontSize="1.2rem">999 Peachtree St NE Suite 840, Atlanta, GA 30309</Typography>
+                            <Typography fontSize="1.4rem">(925) 854-1766</Typography>
+                            <Typography fontSize="1.4rem">support@fixdapp.com</Typography>
+                            <Typography fontSize="1.4rem">999 Peachtree St NE Suite 840, Atlanta, GA 30309</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h5">HELP</Typography>
+                        <Typography variant="h4">HELP</Typography>
+                        <GreenDivider />
                         <Box>
-                            <Typography fontSize="1.2rem">Help Center</Typography>
-                            <Typography fontSize="1.2rem">Contact Support</Typography>
-                            <Typography fontSize="1.2rem">FIXD app and sensor FAQ</Typography>
-                            <Typography fontSize="1.2rem">Returns and warranty</Typography>
-                            <Typography fontSize="1.2rem">Manage subscription</Typography>
+                            <Typography fontSize="1.4rem">Help Center</Typography>
+                            <Typography fontSize="1.4rem">Contact Support</Typography>
+                            <Typography fontSize="1.4rem">FIXD app and sensor FAQ</Typography>
+                            <Typography fontSize="1.4rem">Returns and warranty</Typography>
+                            <Typography fontSize="1.4rem">Manage subscription</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h5">LEGAL</Typography>
+                        <Typography variant="h4">LEGAL</Typography>
+                        <GreenDivider />
                         <Box>
-                            <Typography fontSize="1.2rem">Terms of Use</Typography>
-                            <Typography fontSize="1.2rem">Privacy Policy</Typography>
-                            <Typography fontSize="1.2rem">Advertising Disclosure</Typography>
+                            <Typography fontSize="1.4rem">Terms of Use</Typography>
+                            <Typography fontSize="1.4rem">Privacy Policy</Typography>
+                            <Typography fontSize="1.4rem">Advertising Disclosure</Typography>
                         </Box>
                     </Grid>
                 </Grid>
