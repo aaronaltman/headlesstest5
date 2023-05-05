@@ -13,15 +13,5 @@ module.exports = {
                 }
             }
         ],
-        [
-            '@fullhuman/postcss-purgecss',
-            {
-                content: [
-                    './pages/**/*.{js,jsx,ts,tsx}',
-                    './components/**/*.{js,jsx,ts,tsx}'
-                ],
-                safelist: ["html", "body"]
-            }
-        ],
     ]
 }
