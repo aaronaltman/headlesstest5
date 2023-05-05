@@ -29,7 +29,7 @@ const AaronHero = () => {
                                     The FIXD sensor and free app tells you why your check engine light is on to help you save time and money
                                 </p>
                                 <div className={styles.aaronpadding}></div>
-                                <Button variant="contained" sx={{ backgroundColor: '#4caf50', fontSize:'15px', padding:'10px;' }}>
+                                <Button variant="contained" sx={{ backgroundColor: '#4caf50', fontSize:'12px', padding:'8px;' }}>
                                     Get FIXD 67% Off
                                 </Button>
 
