@@ -18,8 +18,8 @@ export default function AaronFooter() {
                         <Image
                             src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/fixdapp-logo.webp" // Replace with the path to your logo
                             alt="Logo"
-                            width={150}
-                            height={48}
+                            width={300}
+                            height={96}
                         />
                         <Typography variant="h6">Wider Column</Typography>
                         {/* Add your content here */}
