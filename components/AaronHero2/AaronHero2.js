@@ -29,12 +29,6 @@ const AaronHero2 = () => {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <Paper
-                            elevation={2}
-                            sx={{
-                                backgroundColor: '#e5eaf5',
-                            }}
-                        >
                             <Box sx={{ padding: '0 16px' }}>
                                 <Typography variant="h5" component="h3" gutterBottom>
                                     YOUR POCKET CAR EXPERT
@@ -52,7 +46,6 @@ const AaronHero2 = () => {
                                     </Button>
                                 </Box>
                             </Box>
-                        </Paper>
                     </Grid>
                 </Grid>
             </div>
