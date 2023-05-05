@@ -70,6 +70,12 @@ export default function Component() {
                 LEARN MORE
               </Button>
             </div>
+            <section className={styles.posts}>
+              <Heading className={styles.heading} level="h2">
+                Latest Posts
+              </Heading>
+              <Posts posts={data.posts?.nodes} id="posts-list" />
+            </section>
           </section>
           <section>
             <Albums />
@@ -90,12 +96,6 @@ export default function Component() {
                 your most demanding speed and user experience requirements.
               </span>
             </CTA>
-          </section>
-          <section className={styles.posts}>
-            <Heading className={styles.heading} level="h2">
-              Latest Posts
-            </Heading>
-            <Posts posts={data.posts?.nodes} id="posts-list" />
           </section>
           <section className="cta">
             <CTA
