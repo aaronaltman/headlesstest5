@@ -1,6 +1,7 @@
 import * as MENUS from 'constants/menus';
 
 import { useQuery, gql } from '@apollo/client';
+import dynamic from 'next/dynamic';
 import styles from 'styles/pages/_Home.module.scss';
 
 import AaronHero from '/components/AaronHero/AaronHero.js';
@@ -13,9 +14,7 @@ import {
   Header,
   Posts,
   Testimonials,
-  Albums,
   AaronTopBar,
-  AaronHero2,
   AaronFooter,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
@@ -29,6 +28,10 @@ export default function Component() {
   if (loading) {
     return null;
   }
+
+  const LazyAlbums = dynamic(() => import('/components/Albums/Albums'));
+  const LazyAaronHero2 = dynamic(() => import('/components/AaronHero2/AaronHero2'));
+
 
   const { title: siteTitle, description: siteDescription } =
     data?.generalSettings;
@@ -66,10 +69,10 @@ export default function Component() {
             </section>
           </section>
           <section>
-            <Albums />
+            <LazyAlbums />
           </section>
           <section>
-            <AaronHero2 />
+            <LazyAaronHero2 />
           </section>
         </div>
       </Main>
