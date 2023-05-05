@@ -62,6 +62,7 @@ export default function Component() {
               Looking for objective advice, expert info and helpful tools to answer your car questions?
               {' '}
             </p>
+            <p>Turn to your Car FIXD experts.</p>
             <div className={styles.actions}>
               <Button styleType="secondary" href="/contact-us">
                 GET STARTED
