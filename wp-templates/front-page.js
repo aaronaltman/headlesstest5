@@ -14,7 +14,6 @@ import {
   NavigationMenu,
   SEO,
   Header,
-  Footer,
   Posts,
   Testimonials,
   Albums,
@@ -112,21 +111,9 @@ export default function Component() {
               </span>
             </CTA>
           </section>
-          <section className={styles.testimonials}>
-            <Heading className={styles.heading} level="h2">
-              Testimonials
-            </Heading>
-            <p className={styles.description}>
-              Here are just a few of the nice things our customers have to say.
-            </p>
-            <Testimonials testimonials={data?.testimonials?.nodes} />
-          </section>
         </div>
       </Main>
-      <section>
         <AaronFooter />
-      </section>
-      <Footer />
     </>
   );
 }

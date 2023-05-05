@@ -4,9 +4,9 @@ import { styled } from '@mui/system';
 import Image from 'next/image';
 
 const Footer = styled('footer')(({ theme }) => ({
-    backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing(3),
-    color: 'white',
+    backgroundColor: '#e5eaf5', // Changed the background color to #e5eaf5
+    padding: theme.spacing(5, 3), // Top and bottom padding set to 40px
+    color: 'black', // Changed the text color to black
 }));
 
 export default function AaronFooter() {
