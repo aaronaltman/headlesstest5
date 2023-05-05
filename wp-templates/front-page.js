@@ -54,12 +54,6 @@ export default function Component() {
       </section>
       <Main className={styles.home}>
         <div className="container">
-          <section>
-            <Albums />
-          </section>
-          <section>
-            <AaronHero2 />
-          </section>
           <section className="hero text-center" style={{ marginTop: '40px'}} >
             <Heading className={styles.heading} level="h1">
               Car Care
@@ -77,6 +71,12 @@ export default function Component() {
                 LEARN MORE
               </Button>
             </div>
+          </section>
+          <section>
+            <Albums />
+          </section>
+          <section>
+            <AaronHero2 />
           </section>
           <section className="cta">
             <CTA
