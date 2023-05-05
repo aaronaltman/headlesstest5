@@ -2,7 +2,7 @@ import React from 'react';
 import { gql } from '@apollo/client';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { Heading, FeaturedImage, PostInfo } from 'components';
+import { Heading, FeaturedImage } from 'components';
 import appConfig from 'app.config';
 import useFocusFirstNewResult from 'hooks/useFocusFirstNewResult';
 
@@ -64,11 +64,6 @@ function Posts({ posts, intro, id }) {
                     </a>
                   </Link>
                 </Heading>
-                <PostInfo
-                  className={cx('info')}
-                  author={post?.author?.node?.name}
-                  date={post?.date}
-                />
               </div>
             </div>
           );
