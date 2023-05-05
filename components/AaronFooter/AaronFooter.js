@@ -27,7 +27,6 @@ export default function AaronFooter() {
                             alt="Logo"
                             width={200}
                             height={64}
-                            layout="responsive"
                             quality={90}
                             priority={true}
                         />
