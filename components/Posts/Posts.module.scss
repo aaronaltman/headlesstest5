@@ -3,9 +3,10 @@
 .post-list {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  column-gap: 5rem;
-  row-gap: 6rem;
+  column-gap: 4rem;
+  row-gap: 5rem;
   margin-bottom: 6rem;
+  border: none;
 
   @media (min-width: $breakpoint-small) {
     grid-template-columns: repeat(3, 1fr);
