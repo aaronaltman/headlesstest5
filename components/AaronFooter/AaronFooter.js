@@ -25,11 +25,12 @@ export default function AaronFooter() {
                         <Image
                             src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/fixdapp-logo.webp"
                             alt="Logo"
-                            width={200}
-                            height={64}
                             quality={90}
                             priority={true}
+                            layout="responsive"
+                            style={{ maxWidth: '200px', maxHeight: '64px' }}
                         />
+
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}>
                         <Typography variant="h4">ABOUT</Typography>
