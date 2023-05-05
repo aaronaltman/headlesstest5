@@ -16,7 +16,7 @@ import {
   Albums,
   AaronTopBar,
   AaronHero2,
-    AaronFooter,
+  AaronFooter,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 

@@ -13,6 +13,7 @@ const AaronHero2 = () => {
                 margin: 0,
             }}
         >
+            <div className="container">
             <Grid container spacing={4}>
                 <Grid item xs={12} md={6}>
                     <Box display="flex" justifyContent="center">
@@ -43,7 +44,9 @@ const AaronHero2 = () => {
                     </Box>
                 </Grid>
             </Grid>
+            </div>
         </Box>
+
     );
 };
 
