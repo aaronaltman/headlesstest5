@@ -17,6 +17,7 @@ import {
   Testimonials,
   AaronTopBar,
   AaronFooter,
+  AaronBackgroundVideo,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -57,6 +58,9 @@ export default function Component() {
           <section className="hero text-center" style={{ marginTop: '40px'}} >
             <section>
               <AaronVideoEmbed url="https://www.youtube.com/watch?v=jfKfPfyJRdk" title="My YouTube Video" />
+            </section>
+            <section>
+              <AaronBackgroundVideo videoId="uCHuTxVYtsk" />
             </section>
             <Heading className={styles.heading} level="h1">
               Car Care

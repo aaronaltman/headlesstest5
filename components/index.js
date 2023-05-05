@@ -30,6 +30,7 @@ import AaronFooter from './AaronFooter/AaronFooter.js';
 
 import AaronTopBar from '/components/AaronTopBar/AaronTopBar.js';
 import AaronVideoEmbed from '/components/AaronVideoEmbed/AaronVideoEmbed';
+import AaronBackgroundVideo from '/components/AaronBackgroundVideo/AaronBackgroundVideo.js';
 
 export {
   AaronHero,
@@ -63,4 +64,5 @@ export {
   AaronTopBar,
   AaronFooter,
   AaronVideoEmbed,
+  AaronBackgroundVideo,
 };
