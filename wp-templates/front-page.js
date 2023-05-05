@@ -15,6 +15,7 @@ import {
   Testimonials,
   AaronTopBar,
   AaronFooter,
+  AaronPosts,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -59,8 +60,8 @@ export default function Component() {
             </p>
             <p>Turn to your Car FIXD experts.</p>
 
-            <section className={styles.posts}>
-              <Posts posts={data.posts?.nodes} id="posts-list" />
+            <section>
+              <AaronPosts />
             </section>
           </section>
         </div>
