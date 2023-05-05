@@ -1,16 +1,13 @@
 import * as MENUS from 'constants/menus';
 
 import { useQuery, gql } from '@apollo/client';
-import { FaArrowRight } from 'react-icons/fa';
 import styles from 'styles/pages/_Home.module.scss';
 
 import AaronHero from '/components/AaronHero/AaronHero.js';
 
 import {
   Main,
-  Button,
   Heading,
-  CTA,
   NavigationMenu,
   SEO,
   Header,
@@ -63,14 +60,7 @@ export default function Component() {
               {' '}
             </p>
             <p>Turn to your Car FIXD experts.</p>
-            <div className={styles.actions}>
-              <Button styleType="secondary" href="/contact-us">
-                GET STARTED
-              </Button>
-              <Button styleType="primary" href="/about">
-                LEARN MORE
-              </Button>
-            </div>
+
             <section className={styles.posts}>
               <Posts posts={data.posts?.nodes} id="posts-list" />
             </section>
@@ -80,34 +70,6 @@ export default function Component() {
           </section>
           <section>
             <AaronHero2 />
-          </section>
-          <section className="cta">
-            <CTA
-              Button={() => (
-                <Button href="/posts">
-                  Get Started <FaArrowRight style={{ marginLeft: `1rem` }} />
-                </Button>
-              )}
-            >
-              <span>
-                Learn about Core Web Vitals and how Atlas can help you reach
-                your most demanding speed and user experience requirements.
-              </span>
-            </CTA>
-          </section>
-          <section className="cta">
-            <CTA
-              Button={() => (
-                <Button href="/posts">
-                  Get Started <FaArrowRight style={{ marginLeft: `1rem` }} />
-                </Button>
-              )}
-            >
-              <span>
-                Learn about Core Web Vitals and how Atlas can help you reach
-                your most demanding speed and user experience requirements.
-              </span>
-            </CTA>
           </section>
         </div>
       </Main>
