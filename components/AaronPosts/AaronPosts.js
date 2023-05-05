@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql } from '@apollo/client';
 import Link from 'next/link';
-import { Heading, FeaturedImage } from 'components';
+import { Heading } from 'components';
 import appConfig from 'app.config';
 import useFocusFirstNewResult from 'hooks/useFocusFirstNewResult';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
@@ -30,9 +30,9 @@ function AaronPosts({ posts, intro, id }) {
                                 <Link href={post?.uri ?? '#'} passHref>
                                     <CardActionArea>
                                         <CardMedia
-                                            component={FeaturedImage}
                                             sx={{ height: 233 }}
-                                            image={image}
+                                            image={image?.sourceUrl}
+                                            alt={image?.altText}
                                             width={353}
                                             height={233}
                                             priority={i < appConfig.postsAboveTheFold}
@@ -53,7 +53,9 @@ function AaronPosts({ posts, intro, id }) {
                         </Box>
                     );
                 })}
-                {posts && posts?.length < 1 && <Typography paragraph>No posts found.</Typography>}
+                {posts && posts?.length < 1 && (
+                    <Typography paragraph>No posts found.</Typography>
+                )}
             </Box>
         </Box>
     );
@@ -61,7 +63,6 @@ function AaronPosts({ posts, intro, id }) {
 
 AaronPosts.fragments = {
     entry: gql`
-    ${FeaturedImage.fragments.entry}
     fragment PostsItemFragment on Post {
       id
       date
@@ -72,7 +73,12 @@ AaronPosts.fragments = {
           name
         }
       }
-      ...FeaturedImageFragment
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
     }
   `,
 };
