@@ -8,7 +8,6 @@ const AaronHero = () => {
     return (
         <section className={styles.hero}>
             <div className={styles.container}>
-                <div className={"container"}>
                     <div className={styles.row}>
                         <div className={styles.leftCol}>
                             <div className={styles.imageWrapper}>
@@ -37,7 +36,6 @@ const AaronHero = () => {
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
     );
