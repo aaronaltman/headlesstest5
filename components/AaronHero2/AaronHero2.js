@@ -23,9 +23,6 @@ const AaronHero2 = () => {
                             width={486} // Reduced width
                             height={437} // Reduced height
                             priority={true}
-                            sizes="(max-width: 768px) 100vw,
-           (max-width: 1200px) 50vw,
-           33vw"
                         />
 
                     </Box>
