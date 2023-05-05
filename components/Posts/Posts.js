@@ -43,7 +43,7 @@ function Posts({ posts, intro, id }) {
               key={post.id ?? ''}
               id={`post-${post.id}`}
             >
-              <div className={cx('')}>
+              <div className={cx('card')}>
                 <Link href={post?.uri ?? '#'}>
                   <a className={cx('image-holder')} tabIndex="-1">
                     <FeaturedImage
