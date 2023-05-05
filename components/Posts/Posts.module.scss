@@ -50,6 +50,7 @@
 
 .image-holder {
   margin-bottom: 3rem;
+  border: none;
 
   @media (min-width: $breakpoint-small) {
     aspect-ratio: 1 / 1;
