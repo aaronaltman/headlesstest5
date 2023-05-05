@@ -29,7 +29,6 @@ export default function Component() {
     return null;
   }
 
-  const LazyAlbums = dynamic(() => import('/components/Albums/Albums'));
   const LazyAaronHero2 = dynamic(() => import('/components/AaronHero2/AaronHero2'));
 
 
@@ -67,9 +66,6 @@ export default function Component() {
             <section className={styles.posts}>
               <Posts posts={data.posts?.nodes} id="posts-list" />
             </section>
-          </section>
-          <section>
-            <LazyAlbums />
           </section>
           <section>
             <LazyAaronHero2 />
