@@ -72,9 +72,6 @@ export default function Component() {
               </Button>
             </div>
             <section className={styles.posts}>
-              <Heading className={styles.heading} level="h2">
-                Latest Posts
-              </Heading>
               <Posts posts={data.posts?.nodes} id="posts-list" />
             </section>
           </section>
