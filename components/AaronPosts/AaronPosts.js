@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql } from '@apollo/client';
 import Link from 'next/link';
-import { Heading } from 'components';
+import { Heading, FeaturedImage } from 'components';
 import appConfig from 'app.config';
 import useFocusFirstNewResult from 'hooks/useFocusFirstNewResult';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
@@ -26,10 +26,11 @@ function AaronPosts({ posts, intro, id }) {
 
                     return (
                         <Box key={post.id ?? ''} id={`post-${post.id}`} sx={{ width: 353 }}>
-                            <Card>
+                            <Card elevation={2}>
                                 <Link href={post?.uri ?? '#'} passHref>
                                     <CardActionArea>
                                         <CardMedia
+                                            component="img"
                                             sx={{ height: 233 }}
                                             image={image?.sourceUrl}
                                             alt={image?.altText}
@@ -41,11 +42,9 @@ function AaronPosts({ posts, intro, id }) {
                                     </CardActionArea>
                                 </Link>
                                 <CardContent>
-                                    <Heading level="h4">
+                                    <Heading level="h4" sx={{ fontSize: '1.5rem' }}>
                                         <Link href={post?.uri ?? '#'} passHref>
-                                            <a ref={isFirstNewResult ? firstNewResultRef : null}>
-                                                {post.title}
-                                            </a>
+                                            <a ref={isFirstNewResult ? firstNewResultRef : null}>{post.title}</a>
                                         </Link>
                                     </Heading>
                                 </CardContent>
@@ -53,9 +52,7 @@ function AaronPosts({ posts, intro, id }) {
                         </Box>
                     );
                 })}
-                {posts && posts?.length < 1 && (
-                    <Typography paragraph>No posts found.</Typography>
-                )}
+                {posts && posts?.length < 1 && <Typography paragraph>No posts found.</Typography>}
             </Box>
         </Box>
     );
@@ -63,6 +60,7 @@ function AaronPosts({ posts, intro, id }) {
 
 AaronPosts.fragments = {
     entry: gql`
+    ${FeaturedImage.fragments.entry}
     fragment PostsItemFragment on Post {
       id
       date
@@ -73,12 +71,7 @@ AaronPosts.fragments = {
           name
         }
       }
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-        }
-      }
+      ...FeaturedImageFragment
     }
   `,
 };
