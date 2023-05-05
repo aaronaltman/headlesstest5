@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { Heading, FeaturedImage } from 'components';
 import appConfig from 'app.config';
 import useFocusFirstNewResult from 'hooks/useFocusFirstNewResult';
-
-// Import Material-UI components and styles
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 
 function AaronPosts({ posts, intro, id }) {
@@ -29,7 +27,7 @@ function AaronPosts({ posts, intro, id }) {
                     return (
                         <Box key={post.id ?? ''} id={`post-${post.id}`} sx={{ width: 353 }}>
                             <Card>
-                                <Link href={post?.uri ?? '#'}>
+                                <Link href={post?.uri ?? '#'} passHref>
                                     <CardActionArea>
                                         <CardMedia
                                             component={FeaturedImage}
@@ -44,7 +42,7 @@ function AaronPosts({ posts, intro, id }) {
                                 </Link>
                                 <CardContent>
                                     <Heading level="h4">
-                                        <Link href={post?.uri ?? '#'}>
+                                        <Link href={post?.uri ?? '#'} passHref>
                                             <a ref={isFirstNewResult ? firstNewResultRef : null}>
                                                 {post.title}
                                             </a>
@@ -61,7 +59,7 @@ function AaronPosts({ posts, intro, id }) {
     );
 }
 
-Posts.fragments = {
+AaronPosts.fragments = {
     entry: gql`
     ${FeaturedImage.fragments.entry}
     fragment PostsItemFragment on Post {
