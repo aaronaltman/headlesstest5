@@ -20,11 +20,14 @@ const AaronHero2 = () => {
                         <Image
                             src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/phones-app-transparent-large.webp"
                             alt="Fixdapp way of fixing cars"
-                            width={972}
-                            height={874}
-                            layout="responsive"
+                            width={486} // Reduced width
+                            height={437} // Reduced height
                             priority={true}
+                            sizes="(max-width: 768px) 100vw,
+           (max-width: 1200px) 50vw,
+           33vw"
                         />
+
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6}>
