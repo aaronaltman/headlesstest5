@@ -34,10 +34,10 @@ export default function AaronFooter() {
                         <Typography variant="h4">ABOUT</Typography>
                         <GreenDivider />
                         <Box>
-                            <Typography fontSize="1.4rem">About FIXD</Typography>
-                            <Typography fontSize="1.4rem">Careers</Typography>
-                            <Typography fontSize="1.4rem">Press</Typography>
-                            <Typography fontSize="1.4rem">Reviews</Typography>
+                            <Typography fontSize="1.6rem" paddingBottom="10px;">About FIXD</Typography>
+                            <Typography fontSize="1.6rem" paddingBottom="10px;">Careers</Typography>
+                            <Typography fontSize="1.6rem" paddingBottom="10px;">Press</Typography>
+                            <Typography fontSize="1.6rem" paddingBottom="10px;">Reviews</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}>
