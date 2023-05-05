@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button, Grid, Typography, Box } from '@mui/material';
+import { Button, Grid, Typography, Box, Paper } from '@mui/material';
 
 const AaronHero2 = () => {
     return (
@@ -16,6 +16,7 @@ const AaronHero2 = () => {
             <div className="container">
             <Grid container spacing={4}>
                 <Grid item xs={12} md={6}>
+                    <Paper elevation={4}>
                     <Box display="flex" justifyContent="center">
                         <Image
                             src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/phones-app-transparent-large.webp"
@@ -24,8 +25,8 @@ const AaronHero2 = () => {
                             height={437} // Reduced height
                             priority={true}
                         />
-
                     </Box>
+                    </Paper>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Box>
