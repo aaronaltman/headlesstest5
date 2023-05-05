@@ -61,7 +61,7 @@ export default function Component() {
             <p>Turn to your Car FIXD experts.</p>
 
             <section>
-              <AaronPosts />
+              <AaronPosts posts={data?.posts?.nodes} intro="Latest Posts" id="latest-posts" />
             </section>
           </section>
         </div>
