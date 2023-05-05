@@ -52,6 +52,7 @@ function Posts({ posts, intro, id }) {
                       width={340}
                       height={340}
                       priority={i < appConfig.postsAboveTheFold}
+                      loading="lazy"
                     />
                   </a>
                 </Link>
