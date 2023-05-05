@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import styles from 'styles/pages/_Home.module.scss';
 
 import AaronHero from '/components/AaronHero/AaronHero.js';
-import AaronVideoEmbed from '/components/AaronVideoEmbed/AaronVideoEmbed';
 
 import {
   Main,
@@ -17,7 +16,6 @@ import {
   Testimonials,
   AaronTopBar,
   AaronFooter,
-  AaronBackgroundVideo,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -56,12 +54,6 @@ export default function Component() {
       <Main className={styles.home}>
         <div className="container">
           <section className="hero text-center" style={{ marginTop: '40px'}} >
-            <section>
-              <AaronVideoEmbed url="https://www.youtube.com/watch?v=jfKfPfyJRdk" title="My YouTube Video" />
-            </section>
-            <section>
-              <AaronBackgroundVideo videoId="uCHuTxVYtsk" />
-            </section>
             <Heading className={styles.heading} level="h1">
               Car Care
             </Heading>
