@@ -18,8 +18,8 @@ export default function AaronFooter() {
                         <Image
                             src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/fixdapp-logo.webp" // Replace with the path to your logo
                             alt="Logo"
-                            width={300}
-                            height={96}
+                            width={200}
+                            height={64}
                         />
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}>
