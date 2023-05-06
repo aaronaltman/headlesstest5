@@ -4,17 +4,15 @@ import { useQuery, useMutation, gql } from '@apollo/client';
 // Fetch form query
 const FETCH_FORM_QUERY = gql`
   query GetForm {
-    gravityFormsForm(id: "1") {
+    gfForm(id: "Z2ZfZm9ybTox") {
       id
       title
       formFields {
-        id
-        label
-        ... on TextField {
-          type: __typename
-        }
-        ... on TextAreaField {
-          type: __typename
+        edges {
+          node {
+            id
+            type
+          }
         }
       }
     }
@@ -22,10 +20,27 @@ const FETCH_FORM_QUERY = gql`
 `;
 
 
+
 // Submit form mutation
 const SUBMIT_FORM_MUTATION = gql`
-  mutation SubmitForm($fieldValues: [FieldValuesInput]) {
-    submitGfForm(input: { id: "1", fieldValues: $fieldValues }) {
+  mutation SubmitForm($name: String!, $email: String!, $message: String!) {
+    submitGfForm(input: {
+      id: "1",
+      fieldValues: [
+        {
+          id: "1",
+          value: $name
+        },
+        {
+          id: "2",
+          value: $email
+        },
+        {
+          id: "3",
+          value: $message
+        }
+      ]
+    }) {
       errors {
         id
         message
@@ -39,14 +54,6 @@ const SUBMIT_FORM_MUTATION = gql`
     }
   }
 `;
-
-
-const getInputType = (label) => {
-    if (label.toLowerCase().includes('email')) {
-        return 'email';
-    }
-    return 'text';
-};
 
 const AaronForm = () => {
     const [fieldValues, setFieldValues] = useState([]);
@@ -69,21 +76,21 @@ const AaronForm = () => {
     const renderForm = () => {
         if (loading || !data) return <p>Loading...</p>;
 
-        const { formFields } = data.gravityFormsForm;
+        const formFields = data.gfForm.formFields.edges.map(edge => edge.node);
 
         return (
             <form onSubmit={handleSubmit}>
                 {formFields.map((field) => {
-                    const { id, label, type } = field;
+                    const { id, type } = field;
                     let fieldType;
 
                     switch (type) {
-                        case 'TextField':
-                            fieldType = getInputType(label);
+                        case 'TEXT':
+                            fieldType = 'text';
 
                             return (
                                 <div key={id}>
-                                    <label htmlFor={`field-${id}`}>{label}</label>
+                                    <label htmlFor={`field-${id}`}>{type}</label>
                                     <input
                                         type={fieldType}
                                         id={`field-${id}`}
@@ -91,10 +98,10 @@ const AaronForm = () => {
                                     />
                                 </div>
                             );
-                        case 'TextAreaField':
+                        case 'TEXTAREA':
                             return (
                                 <div key={id}>
-                                    <label htmlFor={`field-${id}`}>{label}</label>
+                                    <label htmlFor={`field-${id}`}>{type}</label>
                                     <textarea
                                         id={`field-${id}`}
                                         onChange={(e) => handleChange(id, e.target.value)}
