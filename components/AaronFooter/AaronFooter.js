@@ -70,6 +70,31 @@ export default function AaronFooter() {
                         </Box>
                     </Grid>
                 </Grid>
+                {/* Subfooter */}
+                <Grid container spacing={3} sx={{ marginTop: 4, backgroundColor: '#e5eaf5', paddingTop: 2 }}>
+                    <Grid item xs={12} md={3}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                                <Image src="/logo1.png" alt="Logo 1" width={50} height={50} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Image src="/logo2.png" alt="Logo 2" width={50} height={50} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Image src="/logo3.png" alt="Logo 3" width={50} height={50} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Image src="/logo4.png" alt="Logo 4" width={50} height={50} />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} md={9}>
+                        <div style={{ borderTop: '1px solid gray', paddingTop: 16 }}>
+                            {/* Your content for the 75% right column */}
+                            <Typography fontSize="1.4rem">© 2023 FIXD, Inc. All Rights Reserved. Exclusive Member of Mediavine Home.</Typography>
+                        </div>
+                    </Grid>
+                </Grid>
             </Container>
         </Footer>
     );
