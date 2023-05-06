@@ -39,13 +39,23 @@ const SUBMIT_FORM_MUTATION = gql`
   }
 `;
 
+const getInputType = (label) => {
+    if (label.toLowerCase().includes('email')) {
+        return 'email';
+    }
+    return 'text';
+};
+
 const AaronForm = () => {
     const [fieldValues, setFieldValues] = useState([]);
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
     const [submitForm] = useMutation(SUBMIT_FORM_MUTATION);
 
     const handleChange = (fieldId, value) => {
-        setFieldValues((prev) => [...prev.filter((fv) => fv.id !== fieldId), { id: fieldId, value }]);
+        setFieldValues((prev) => [
+            ...prev.filter((fv) => fv.id !== fieldId),
+            { id: fieldId, value },
+        ]);
     };
 
     const handleSubmit = async (e) => {
@@ -55,30 +65,40 @@ const AaronForm = () => {
     };
 
     const renderForm = () => {
-        if (loading) return <p>Loading...</p>;
+        if (loading || !data) return <p>Loading...</p>;
+
         const { formFields } = data.gravityFormsForm;
 
         return (
             <form onSubmit={handleSubmit}>
                 {formFields.map((field) => {
                     const { id, label, type } = field;
+                    let fieldType;
 
                     switch (type) {
                         case 'TextField':
+                            fieldType = getInputType(label);
+
                             return (
                                 <div key={id}>
                                     <label htmlFor={`field-${id}`}>{label}</label>
-                                    <input type="text" id={`field-${id}`} onChange={(e) => handleChange(id, e.target.value)} />
+                                    <input
+                                        type={fieldType}
+                                        id={`field-${id}`}
+                                        onChange={(e) => handleChange(id, e.target.value)}
+                                    />
                                 </div>
                             );
                         case 'TextAreaField':
                             return (
                                 <div key={id}>
                                     <label htmlFor={`field-${id}`}>{label}</label>
-                                    <textarea id={`field-${id}`} onChange={(e) => handleChange(id, e.target.value)} />
+                                    <textarea
+                                        id={`field-${id}`}
+                                        onChange={(e) => handleChange(id, e.target.value)}
+                                    />
                                 </div>
                             );
-                        // Add more cases for other field types as needed
                         default:
                             return null;
                     }
