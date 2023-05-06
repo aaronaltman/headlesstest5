@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql } from '@apollo/client';
 import Link from 'next/link';
-import { Heading, FeaturedImage } from 'components';
+import { FeaturedImage } from 'components';
 import appConfig from 'app.config';
 import useFocusFirstNewResult from 'hooks/useFocusFirstNewResult';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
@@ -26,7 +26,7 @@ function AaronPosts({ posts, intro, id }) {
 
                     return (
                         <Box key={post.id ?? ''} id={`post-${post.id}`} sx={{ width: 353 }}>
-                            <Card elevation={1}> {/* Change the elevation value here */}
+                            <Card elevation={1}>
                                 <Link href={post?.uri ?? '#'} passHref>
                                     <CardActionArea>
                                         <CardMedia
@@ -42,13 +42,14 @@ function AaronPosts({ posts, intro, id }) {
                                     </CardActionArea>
                                 </Link>
                                 <CardContent>
-                                    <Heading level="h4" sx={{ fontSize: '1.2rem' }}> {/* Change the fontSize here */}
+                                    {/* Replace Heading component with Typography component */}
+                                    <Typography variant="h5" component="h4" sx={{ fontSize: '1.2rem' }}>
                                         <Link href={post?.uri ?? '#'} passHref>
                                             <a ref={isFirstNewResult ? firstNewResultRef : null}>
                                                 {post.title}
                                             </a>
                                         </Link>
-                                    </Heading>
+                                    </Typography>
                                 </CardContent>
                             </Card>
                         </Box>
