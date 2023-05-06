@@ -1,13 +1,47 @@
 import React from 'react';
 import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react/hooks';
 import Link from 'next/link';
-import { FeaturedImage } from 'components';
 import appConfig from 'app.config';
 import useFocusFirstNewResult from 'hooks/useFocusFirstNewResult';
-import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, CardMedia, Typography, CircularProgress } from '@mui/material';
 
-function AaronPosts({ posts, intro, id }) {
-    const { firstNewResultRef, firstNewResultIndex } = useFocusFirstNewResult(posts);
+import OtherApolloClient from '/OtherApolloClient.js';
+
+const GET_POSTS_BY_CATEGORY = gql`
+  query GetPostsByCategory($categoryId: ID!, $first: Int) {
+    category(id: $categoryId) {
+      name
+      posts(first: $first) {
+        nodes {
+          id
+          date
+          uri
+          title
+          featuredImage {
+            node {
+              mediaItemUrl
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+function AaronPosts({ intro, id, categoryId }) {
+    const { data, loading, error } = useQuery(GET_POSTS_BY_CATEGORY, {
+        variables: { categoryId, first: 6 },
+        client: OtherApolloClient, // Use the OtherApolloClient here
+    });
+
+    const { firstNewResultRef, firstNewResultIndex } = useFocusFirstNewResult(data?.category?.posts?.nodes);
+
+    if (loading) return <CircularProgress />;
+    if (error) return <Typography>Error: {error.message}</Typography>;
+
+    const posts = data?.category?.posts?.nodes;
 
     return (
         <Box component="section" {...(id && { id })}>
@@ -32,7 +66,7 @@ function AaronPosts({ posts, intro, id }) {
                                         <CardMedia
                                             component="img"
                                             sx={{ height: 233 }}
-                                            image={image?.sourceUrl}
+                                            image={image?.mediaItemUrl}
                                             alt={image?.altText}
                                             width={353}
                                             height={233}
@@ -60,23 +94,5 @@ function AaronPosts({ posts, intro, id }) {
         </Box>
     );
 }
-
-AaronPosts.fragments = {
-    entry: gql`
-    ${FeaturedImage.fragments.entry}
-    fragment PostsItemFragment on Post {
-      id
-      date
-      uri
-      title
-      author {
-        node {
-          name
-        }
-      }
-      ...FeaturedImageFragment
-    }
-  `,
-};
 
 export default AaronPosts;
