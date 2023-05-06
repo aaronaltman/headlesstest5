@@ -1,47 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import CryptoJS from 'crypto-js';
+import OAuth from 'oauth-1.0a';
+import fetch from 'isomorphic-fetch';
 
 const AaronForm = () => {
-    // Helper function to calculate the signature needed for authentication
-    const calculateSig = (stringToSign, privateKey) => {
-        const hash = CryptoJS.HmacSHA1(stringToSign, privateKey);
-        const base64 = hash.toString(CryptoJS.enc.Base64);
-        return encodeURIComponent(base64);
-    };
-
     const [formData, setFormData] = useState(null);
 
     useEffect(() => {
-        async function fetchFormData() {
-            const d = new Date();
-            const expiration = 3600; // 1 hour
-            const unixtime = parseInt(d.getTime() / 1000);
-            const futureUnixtime = unixtime + expiration;
-            const publicKey = 'ck_646081aac85800915e690aa5df53f31b43e056ab';
-            const privateKey = 'cs_9ac0dd1c09f8354f34edc83cc5ab3b5fb84d2aea';
-            const method = 'GET';
-            const route = 'forms/1';
+        // Initialize OAuth object
+        const oauth = OAuth({
+            consumer: {
+                key: 'ck_646081aac85800915e690aa5df53f31b43e056ab',
+                secret: 'cs_9ac0dd1c09f8354f34edc83cc5ab3b5fb84d2aea',
+            },
+            signature_method: 'HMAC-SHA1',
+        });
 
-            const stringToSign = publicKey + ':' + method + ':' + route + ':' + futureUnixtime;
-            const sig = calculateSig(stringToSign, privateKey);
-            const apiUrl = 'https://bpheadlesst962.wpengine.com/wp-json/gf/v2/' + route + '?_gf_json_nonce=' + publicKey + '&signature=' + sig + '&expires=' + futureUnixtime;
+        // Define API URL and request parameters
+        const apiUrl = 'https://bpheadlesst962.wpengine.com/wp-json/gf/v2/forms/1';
+        const requestData = {
+            url: apiUrl,
+            method: 'GET',
+        };
 
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+        // Get OAuth headers
+        const headers = oauth.toHeader(oauth.authorize(requestData));
 
-                if (response.status !== 200) {
-                    console.error('There was an error attempting to access the API - ' + response.status + ': ' + data.response);
-                    return;
+        // Make API request using fetch and OAuth headers
+        fetch(apiUrl, {
+            method: 'GET',
+            headers,
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
                 }
-
+                return response.json();
+            })
+            .then((data) => {
                 setFormData(data);
-            } catch (error) {
+            })
+            .catch((error) => {
                 console.error('Error fetching form data:', error);
-            }
-        }
-
-        fetchFormData();
+            });
     }, []);
 
     // Render the form using the fetched form data
