@@ -26,7 +26,7 @@ function AaronPosts({ posts, intro, id }) {
 
                     return (
                         <Box key={post.id ?? ''} id={`post-${post.id}`} sx={{ width: 353 }}>
-                            <Card elevation={2}>
+                            <Card elevation={1}> {/* Change the elevation value here */}
                                 <Link href={post?.uri ?? '#'} passHref>
                                     <CardActionArea>
                                         <CardMedia
@@ -42,7 +42,7 @@ function AaronPosts({ posts, intro, id }) {
                                     </CardActionArea>
                                 </Link>
                                 <CardContent>
-                                    <Heading level="h4" sx={{ fontSize: '1.5rem' }}>
+                                    <Heading level="h4" sx={{ fontSize: '1.2rem' }}> {/* Change the fontSize here */}
                                         <Link href={post?.uri ?? '#'} passHref>
                                             <a ref={isFirstNewResult ? firstNewResultRef : null}>
                                                 {post.title}
