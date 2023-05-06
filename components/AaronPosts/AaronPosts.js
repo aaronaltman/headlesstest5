@@ -1,6 +1,5 @@
 import React from 'react';
-import { gql } from '@apollo/client';
-import { useQuery } from '@apollo/client/react/hooks';
+import { gql, useQuery } from '@apollo/client';
 import Link from 'next/link';
 
 import OtherApolloClient from '/OtherApolloClient.js';
@@ -8,14 +7,12 @@ import OtherApolloClient from '/OtherApolloClient.js';
 import appConfig from 'app.config';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 
-const GET_POSTS_BY_TITLE = gql`
-  query GetPostsByTitle($title: String!) {
-    posts(where: {title: {$title}}) {
+const GET_POSTS_BY_ID = gql`
+  query GetPostsById($ids: [ID!]!) {
+    posts(where: { ids: $ids }) {
       nodes {
         id
         title
-        content
-        date
         featuredImage {
           node {
             link
@@ -26,11 +23,11 @@ const GET_POSTS_BY_TITLE = gql`
   }
 `;
 
-const titles = [  "The Most Common Diagnostic Trouble Codes | DTC Directory",  "P0300 Code Explained: Causes, Symptoms & How To Fix It",  "P0420 Code Explained: Catalyst System Efficiency Below Threshold",  "P0430 – Meaning, Causes, Symptoms, & Fixes",  "P0455 Engine Code Explained: Causes, Symptoms & How To Fix It",  "P0171 – Meaning, Causes, Symptoms, & Fixes",];
+const postIds = ["cG9zdDoyMzQy", "cG9zdDoyMjY2", "cG9zdDoyMjgw", "cG9zdDozMDIz", "cG9zdDoyMjk1"];
 
 function AaronPosts({ intro, id }) {
-    const postsQuery = useQuery(GET_POSTS_BY_TITLE, {
-        variables: { title: titles[0] },
+    const postsQuery = useQuery(GET_POSTS_BY_ID, {
+        variables: { ids: postIds },
         client: OtherApolloClient,
     });
 
