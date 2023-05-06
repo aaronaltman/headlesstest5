@@ -16,6 +16,7 @@ import {
   AaronTopBar,
   AaronFooter,
   AaronPosts,
+  AaronForm,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -69,6 +70,9 @@ export default function Component() {
                   ID5="cG9zdDoyMjk1"
               />
             </section>
+          </section>
+          <section>
+            <AaronForm />
           </section>
         </div>
       </Main>
