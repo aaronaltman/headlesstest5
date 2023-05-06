@@ -44,7 +44,9 @@ function AaronPosts({ posts, intro, id }) {
                                 <CardContent>
                                     <Heading level="h4" sx={{ fontSize: '1.5rem' }}>
                                         <Link href={post?.uri ?? '#'} passHref>
-                                            <a ref={isFirstNewResult ? firstNewResultRef : null}>{post.title}</a>
+                                            <a ref={isFirstNewResult ? firstNewResultRef : null}>
+                                                {post.title}
+                                            </a>
                                         </Link>
                                     </Heading>
                                 </CardContent>
