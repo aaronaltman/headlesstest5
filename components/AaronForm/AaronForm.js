@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import OAuth from 'oauth-1.0a';
 import fetch from 'isomorphic-fetch';
 
+
+const b64_hmac_sha1 = (key, data) => {
+    const hmac = require('crypto').createHmac('sha1', key);
+    hmac.update(data);
+    return hmac.digest('base64');
+};
+
 const AaronForm = () => {
     const [formData, setFormData] = useState(null);
 
@@ -13,6 +20,7 @@ const AaronForm = () => {
                 secret: 'cs_9ac0dd1c09f8354f34edc83cc5ab3b5fb84d2aea',
             },
             signature_method: 'HMAC-SHA1',
+            hash_function: b64_hmac_sha1,
         });
 
         // Define API URL and request parameters
