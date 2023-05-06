@@ -10,7 +10,7 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@
 
 const GET_POSTS_BY_TITLE = gql`
   query GetPostsByTitle($title: String!) {
-    posts(where: {title: {eq: $title}}) {
+    posts(where: {title: $title}) {
       nodes {
         id
         title
