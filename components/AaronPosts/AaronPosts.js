@@ -9,7 +9,7 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@
 
 const GET_POSTS_BY_ID = gql`
   query GetPostsById($ids: [ID!]!) {
-    posts(where: { ids: $ids }) {
+    posts(where: { idIn: $ids }) {
       nodes {
         id
         title
