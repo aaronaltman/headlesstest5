@@ -23,9 +23,10 @@ const GET_POSTS_BY_ID = gql`
   }
 `;
 
-const postIds = ["cG9zdDoyMzQy", "cG9zdDoyMjY2", "cG9zdDoyMjgw", "cG9zdDozMDIz", "cG9zdDoyMjk1"];
 
-function AaronPosts({ intro, id }) {
+function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5 }) {
+    const postIds = [ID1, ID2, ID3, ID4, ID5];
+
     const postsQuery = useQuery(GET_POSTS_BY_ID, {
         variables: { ids: postIds },
         client: OtherApolloClient,
