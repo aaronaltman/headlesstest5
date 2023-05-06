@@ -19,8 +19,6 @@ const FETCH_FORM_QUERY = gql`
   }
 `;
 
-
-
 // Submit form mutation
 const SUBMIT_FORM_MUTATION = gql`
   mutation SubmitForm($name: String!, $email: String!, $message: String!) {
@@ -56,20 +54,26 @@ const SUBMIT_FORM_MUTATION = gql`
 `;
 
 const AaronForm = () => {
-    const [fieldValues, setFieldValues] = useState([]);
+    const [fieldValues, setFieldValues] = useState({});
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
     const [submitForm] = useMutation(SUBMIT_FORM_MUTATION);
 
     const handleChange = (fieldId, value) => {
-        setFieldValues((prev) => [
-            ...prev.filter((fv) => fv.id !== fieldId),
-            { id: fieldId, value },
-        ]);
+        setFieldValues(prev => ({
+            ...prev,
+            [fieldId]: value
+        }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        const result = await submitForm({ variables: { fieldValues } });
+        const result = await submitForm({
+            variables: {
+                name: fieldValues['1'],
+                email: fieldValues['2'],
+                message: fieldValues['3']
+            }
+        });
         console.log(result);
     };
 
@@ -80,21 +84,18 @@ const AaronForm = () => {
 
         return (
             <form onSubmit={handleSubmit}>
-                {formFields.map((field) => {
+                {formFields.map(field => {
                     const { id, type } = field;
-                    let fieldType;
 
                     switch (type) {
                         case 'TEXT':
-                            fieldType = 'text';
-
                             return (
                                 <div key={id}>
                                     <label htmlFor={`field-${id}`}>{type}</label>
                                     <input
-                                        type={fieldType}
+                                        type="text"
                                         id={`field-${id}`}
-                                        onChange={(e) => handleChange(id, e.target.value)}
+                                        onChange={e => handleChange(id, e.target.value)}
                                     />
                                 </div>
                             );
@@ -104,7 +105,7 @@ const AaronForm = () => {
                                     <label htmlFor={`field-${id}`}>{type}</label>
                                     <textarea
                                         id={`field-${id}`}
-                                        onChange={(e) => handleChange(id, e.target.value)}
+                                        onChange={e => handleChange(id, e.target.value)}
                                     />
                                 </div>
                             );
