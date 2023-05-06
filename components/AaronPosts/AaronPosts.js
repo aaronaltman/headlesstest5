@@ -12,7 +12,7 @@ const GET_POSTS_BY_CATEGORY = gql`
   query GetPostsByCategory($categoryId: ID!, $first: Int, $titles: [String]) {
     category(id: $categoryId) {
       name
-      posts(first: $first, where: { title: $titles }) { // Changed titleIn to title
+      posts(first: $first, where: { title: $titles }) { 
         nodes {
           id
           date
