@@ -9,10 +9,10 @@ import appConfig from 'app.config';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 
 const GET_POSTS_BY_CATEGORY = gql`
-  query GetPostsByCategory($categoryId: ID!, $first: Int, $titles: [String]) {
+  query GetPostsByCategory($categoryId: ID!, $first: Int, $titles: [String!]) {
     category(id: $categoryId) {
       name
-      posts(first: $first, where: { title: $titles }) { 
+      posts(first: $first, where: { titleIn: $titles }) {
         nodes {
           id
           date
@@ -29,6 +29,7 @@ const GET_POSTS_BY_CATEGORY = gql`
     }
   }
 `;
+
 
 function AaronPosts({ intro, id, categoryId }) {
     const titles = [
