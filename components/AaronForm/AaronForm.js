@@ -4,7 +4,7 @@ import { useQuery, useMutation, gql } from '@apollo/client';
 // Fetch form query
 const FETCH_FORM_QUERY = gql`
   query GetForm {
-    gravityFormsForm(id: 1) {
+    gravityFormsForm(id: "1") {
       id
       title
       formFields {
@@ -21,10 +21,11 @@ const FETCH_FORM_QUERY = gql`
   }
 `;
 
+
 // Submit form mutation
 const SUBMIT_FORM_MUTATION = gql`
   mutation SubmitForm($fieldValues: [FieldValuesInput]) {
-    submitGfForm(input: { id: 1, fieldValues: $fieldValues }) {
+    submitGfForm(input: { id: "1", fieldValues: $fieldValues }) {
       errors {
         id
         message
@@ -38,6 +39,7 @@ const SUBMIT_FORM_MUTATION = gql`
     }
   }
 `;
+
 
 const getInputType = (label) => {
     if (label.toLowerCase().includes('email')) {
