@@ -20,58 +20,63 @@ export default function AaronFooter() {
     return (
         <Footer>
             <Container maxWidth="lg">
+                {/* Main footer */}
                 <Grid container spacing={3}>
-                    <Grid item xs={12} md={4}>
+                    {/* Logo */}
+                    <Grid item xs={12} md={3}>
                         <Image
                             src="https://bpheadlesst962.wpengine.com/wp-content/uploads/2023/05/fixdapp-logo.webp"
                             alt="Logo"
                             width={200}
                             height={64}
                         />
-
                     </Grid>
-                    <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h4">ABOUT</Typography>
-                        <GreenDivider />
-                        <Box>
-                            <Typography fontSize="1.6rem" paddingBottom="10px;">About FIXD</Typography>
-                            <Typography fontSize="1.6rem" paddingBottom="10px;">Careers</Typography>
-                            <Typography fontSize="1.6rem" paddingBottom="10px;">Press</Typography>
-                            <Typography fontSize="1.6rem" paddingBottom="10px;">Reviews</Typography>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h4">CONTACT US</Typography>
-                        <GreenDivider />
-                        <Box>
-                            <Typography fontSize="1.4rem">(925) 854-1766</Typography>
-                            <Typography fontSize="1.4rem">support@fixdapp.com</Typography>
-                            <Typography fontSize="1.4rem">999 Peachtree St NE Suite 840, Atlanta, GA 30309</Typography>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h4">HELP</Typography>
-                        <GreenDivider />
-                        <Box>
-                            <Typography fontSize="1.4rem">Help Center</Typography>
-                            <Typography fontSize="1.4rem">Contact Support</Typography>
-                            <Typography fontSize="1.4rem">FIXD app and sensor FAQ</Typography>
-                            <Typography fontSize="1.4rem">Returns and warranty</Typography>
-                            <Typography fontSize="1.4rem">Manage subscription</Typography>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={6} sm={4} md={2}>
-                        <Typography variant="h4">LEGAL</Typography>
-                        <GreenDivider />
-                        <Box>
-                            <Typography fontSize="1.4rem">Terms of Use</Typography>
-                            <Typography fontSize="1.4rem">Privacy Policy</Typography>
-                            <Typography fontSize="1.4rem">Advertising Disclosure</Typography>
-                        </Box>
+                    {/* About, Contact Us, Help, and Legal columns */}
+                    <Grid item container xs={12} md={9} spacing={3}>
+                        <Grid item xs={6} sm={4} md={4}>
+                            <Typography variant="h4">ABOUT</Typography>
+                            <GreenDivider />
+                            <Box>
+                                <Typography fontSize="1.6rem" paddingBottom="10px;">About FIXD</Typography>
+                                <Typography fontSize="1.6rem" paddingBottom="10px;">Careers</Typography>
+                                <Typography fontSize="1.6rem" paddingBottom="10px;">Press</Typography>
+                                <Typography fontSize="1.6rem" paddingBottom="10px;">Reviews</Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={4}>
+                            <Typography variant="h4">CONTACT US</Typography>
+                            <GreenDivider />
+                            <Box>
+                                <Typography fontSize="1.4rem">(925) 854-1766</Typography>
+                                <Typography fontSize="1.4rem">support@fixdapp.com</Typography>
+                                <Typography fontSize="1.4rem">999 Peachtree St NE Suite 840, Atlanta, GA 30309</Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={4}>
+                            <Typography variant="h4">HELP</Typography>
+                            <GreenDivider />
+                            <Box>
+                                <Typography fontSize="1.4rem">Help Center</Typography>
+                                <Typography fontSize="1.4rem">Contact Support</Typography>
+                                <Typography fontSize="1.4rem">FIXD app and sensor FAQ</Typography>
+                                <Typography fontSize="1.4rem">Returns and warranty</Typography>
+                                <Typography fontSize="1.4rem">Manage subscription</Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={4}>
+                            <Typography variant="h4">LEGAL</Typography>
+                            <GreenDivider />
+                            <Box>
+                                <Typography fontSize="1.4rem">Terms of Use</Typography>
+                                <Typography fontSize="1.4rem">Privacy Policy</Typography>
+                                <Typography fontSize="1.4rem">Advertising Disclosure</Typography>
+                            </Box>
+                        </Grid>
                     </Grid>
                 </Grid>
                 {/* Subfooter */}
                 <Grid container spacing={3} sx={{ marginTop: 4, backgroundColor: '#e5eaf5', paddingTop: 2 }}>
+                    {/* Logos */}
                     <Grid item xs={12} md={3}>
                         <Grid container spacing={2}>
                             <Grid item xs={6}>
@@ -88,10 +93,11 @@ export default function AaronFooter() {
                             </Grid>
                         </Grid>
                     </Grid>
+                    {/* 75% column */}
                     <Grid item xs={12} md={9}>
                         <div style={{ borderTop: '1px solid gray', paddingTop: 16 }}>
                             {/* Your content for the 75% right column */}
-                            <Typography fontSize="1.4rem">© 2023 FIXD, Inc. All Rights Reserved. Exclusive Member of Mediavine Home.</Typography>
+                            <Typography fontSize="1.4rem">Your content here</Typography>
                         </div>
                     </Grid>
                 </Grid>
