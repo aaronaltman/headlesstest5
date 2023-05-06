@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import OAuth from 'oauth-1.0a';
 import fetch from 'isomorphic-fetch';
 
-
 const b64_hmac_sha1 = (key, data) => {
     const hmac = require('crypto').createHmac('sha1', key);
     hmac.update(data);
@@ -24,7 +23,7 @@ const AaronForm = () => {
         });
 
         // Define API URL and request parameters
-        const apiUrl = 'https://bpheadlesst962.wpengine.com/wp-json/gf/v2/forms/1';
+        const apiUrl = 'https://bpheadlesst962.wpengine.com/wp-json/gf/v2/forms/1/field-filters';
         const requestData = {
             url: apiUrl,
             method: 'GET',
@@ -58,7 +57,7 @@ const AaronForm = () => {
 
         return (
             <form>
-                {formData.fields.map((field) => {
+                {formData.map((field) => {
                     const { id, label, type } = field;
 
                     switch (type) {
