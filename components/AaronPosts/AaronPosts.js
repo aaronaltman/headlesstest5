@@ -8,21 +8,17 @@ import OtherApolloClient from '/OtherApolloClient.js';
 import appConfig from 'app.config';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 
-const GET_POSTS_BY_CATEGORY = gql`
-  query GetPostsByCategory($categoryId: ID!, $first: Int, $titles: [String!]) {
-    category(id: $categoryId) {
-      name
-      posts(first: $first, where: { titleIn: $titles }) {
-        nodes {
-          id
-          date
-          uri
-          title
-          featuredImage {
-            node {
-              mediaItemUrl
-              altText
-            }
+const GET_POSTS_BY_TITLE = gql`
+  query GetPostsByTitle($title: String!) {
+    posts(where: {title: {eq: $title}}) {
+      nodes {
+        id
+        title
+        content
+        date
+        featuredImage {
+          node {
+            link
           }
         }
       }
@@ -30,8 +26,7 @@ const GET_POSTS_BY_CATEGORY = gql`
   }
 `;
 
-
-function AaronPosts({ intro, id, categoryId }) {
+function AaronPosts({ intro, id }) {
     const titles = [
         "The Most Common Diagnostic Trouble Codes | DTC Directory",
         "P0300 Code Explained: Causes, Symptoms & How To Fix It",
@@ -41,20 +36,20 @@ function AaronPosts({ intro, id, categoryId }) {
         "P0171 – Meaning, Causes, Symptoms, & Fixes",
     ];
 
-    const { data, loading, error } = useQuery(GET_POSTS_BY_CATEGORY, {
-        variables: { categoryId, first: 6, titles },
+    const {data, loading, error} = useQuery(GET_POSTS_BY_TITLE, {
+        variables: {title: titles[0]}, // Change this to select a different title
         client: OtherApolloClient,
     });
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const posts = data?.category?.posts?.nodes;
+    const posts = data?.posts?.nodes;
 
     return (
-        <Box component="section" {...(id && { id })}>
+        <Box component="section" {...(id && {id})}>
             {intro && <Typography paragraph>{intro}</Typography>}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            <Box sx={{display: 'flex', flexWrap: 'wrap', gap: '1rem'}}>
                 {posts?.map((post, i) => {
                     let image = post?.featuredImage?.node;
 
@@ -66,15 +61,15 @@ function AaronPosts({ intro, id, categoryId }) {
                     }
 
                     return (
-                        <Box key={post.id ?? ''} id={`post-${post.id}`} sx={{ width: 353 }}>
+                        <Box key={post.id ?? ''} id={`post-${post.id}`} sx={{width: 353}}>
                             <Card elevation={1}>
                                 <Link href={post?.uri ?? '#'} passHref>
                                     <CardActionArea>
                                         <CardMedia
                                             component="img"
-                                            sx={{ height: 233 }}
-                                            image={image?.mediaItemUrl}
-                                            alt={image?.altText}
+                                            sx={{height: 233}}
+                                            image={image?.link} // Change this to the correct image field
+                                            alt={post.title} // Use the post title as the alt text
                                             width={353}
                                             height={233}
                                             priority={i < appConfig.postsAboveTheFold}
@@ -83,12 +78,13 @@ function AaronPosts({ intro, id, categoryId }) {
                                     </CardActionArea>
                                 </Link>
                                 <CardContent>
-                                    <Typography variant="h5" component="h4" sx={{ fontSize: '1.2rem' }}>
+                                    <Typography variant="h5" component="h4" sx={{fontSize: '1.2rem'}}>
                                         <Link href={post?.uri ?? '#'} passHref>
-                                            <a>
-                                                {post.title}
-                                            </a>
+                                            <a>{post.title}</a>
                                         </Link>
+                                    </Typography>
+                                    <Typography variant="body1" sx={{fontSize: '1rem'}}>
+                                        {post.date}
                                     </Typography>
                                 </CardContent>
                             </Card>
@@ -102,5 +98,6 @@ function AaronPosts({ intro, id, categoryId }) {
         </Box>
     );
 }
+    export default AaronPosts;
 
-export default AaronPosts;
+
