@@ -21,7 +21,7 @@ export default function AaronFooter() {
         <Footer>
             <Container maxWidth="lg">
                 {/* Main footer */}
-                <Grid container spacing={3}>
+                <Grid container spacing={12}>
                     {/* Logo */}
                     <Grid item xs={12} sm={8} md={4}>
                         <Image
@@ -32,8 +32,8 @@ export default function AaronFooter() {
                         />
                     </Grid>
                     {/* About, Contact Us, Help, and Legal columns */}
-                    <Grid item container xs={12} md={9} spacing={3}>
-                        <Grid item xs={8} sm={4} md={3}>
+                    <Grid item container xs={12} md={9} spacing={2}>
+                        <Grid item xs={8} sm={4} md={2}>
                             <Typography variant="h4">ABOUT</Typography>
                             <GreenDivider />
                             <Box>
@@ -43,7 +43,7 @@ export default function AaronFooter() {
                                 <Typography fontSize="1.6rem" paddingBottom="10px;">Reviews</Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={8} sm={4} md={3}>
+                        <Grid item xs={8} sm={4} md={2}>
                             <Typography variant="h4">CONTACT US</Typography>
                             <GreenDivider />
                             <Box>
@@ -52,7 +52,7 @@ export default function AaronFooter() {
                                 <Typography fontSize="1.4rem">999 Peachtree St NE Suite 840, Atlanta, GA 30309</Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={8} sm={4} md={3}>
+                        <Grid item xs={8} sm={4} md={2}>
                             <Typography variant="h4">HELP</Typography>
                             <GreenDivider />
                             <Box>
@@ -63,7 +63,7 @@ export default function AaronFooter() {
                                 <Typography fontSize="1.4rem">Manage subscription</Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={8} sm={4} md={3}>
+                        <Grid item xs={8} sm={4} md={2}>
                             <Typography variant="h4">LEGAL</Typography>
                             <GreenDivider />
                             <Box>
