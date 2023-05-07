@@ -62,13 +62,24 @@ export default function Component() {
             <p>Turn to your Car FIXD experts.</p>
             <section>
               <AaronPosts
-                  intro="Some intro text"
+                  intro="OBD2 CODES"
                   ID1="cG9zdDoyMzQy"
                   ID2="cG9zdDoyMjY2"
                   ID3="cG9zdDoyMjgw"
                   ID4="cG9zdDozMDIz"
                   ID5="cG9zdDoyMjk1"
-                  ID6="cG9zdDox"
+                  ID6="cG9zdDo1NDYwNw=="
+              />
+            </section>
+            <section>
+              <AaronPosts
+                  intro="Check Engine Light"
+                  ID1="cG9zdDo2MDAzNg=="
+                  ID2="cG9zdDo2MDE2Nw=="
+                  ID3="cG9zdDo2MDA4Mg=="
+                  ID4="cG9zdDo2MDU4Nw=="
+                  ID5="cG9zdDo2MDU1MQ=="
+                  ID6="cG9zdDo2MDA1OQ=="
               />
             </section>
           </section>
