@@ -23,8 +23,8 @@ const GET_POSTS_BY_ID = gql`
   }
 `;
 
-function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5 }) {
-    const postIds = [ID1, ID2, ID3, ID4, ID5];
+function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5, ID6 }) {
+    const postIds = [ID1, ID2, ID3, ID4, ID5, ID6];
 
     const postsQuery = useQuery(GET_POSTS_BY_ID, {
         variables: { ids: postIds },
@@ -38,8 +38,8 @@ function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5 }) {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <Box component="section" {...(id && { id })}>
-            {intro && <Typography paragraph>{intro}</Typography>}
+        <Box component="section" {...(id && { id: id })}>
+        {intro && <Typography paragraph>{intro}</Typography>}
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {posts?.map((post, i) => {
                     let image = post?.featuredImage?.node;
