@@ -98,7 +98,9 @@ const AaronForm = () => {
     };
 
     const renderForm = () => {
-        if (loading || !data) return <p>Loading...</p>;
+        if (loading || !data || !data.gfForms || !data.gfForms.nodes || !data.gfForms.nodes[0]) {
+            return <p>Loading...</p>;
+        }
 
         const formFields = data.gfForms.nodes[0].formFields.edges.map(edge => edge.node);
 
