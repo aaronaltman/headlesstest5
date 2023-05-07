@@ -44,7 +44,7 @@ function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5, ID6 }) {
                     variant="h4"
                     component="h2"
                     paragraph
-                    sx={{ textAlign: 'left', fontSize: '2rem' }}
+                    sx={{ textAlign: 'left', fontSize: '2.4rem' }}
                 >
                     {intro}
                 </Typography>
