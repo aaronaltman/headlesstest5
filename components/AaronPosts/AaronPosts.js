@@ -39,7 +39,7 @@ function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5, ID6 }) {
 
     return (
         <Box component="section" {...(id && { id: id })}>
-        {intro && <Typography paragraph>{intro}</Typography>}
+            {intro && <Typography paragraph>{intro}</Typography>}
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {posts?.map((post, i) => {
                     let image = post?.featuredImage?.node;
@@ -52,7 +52,7 @@ function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5, ID6 }) {
                     }
 
                     return (
-                        <Box key={post.id ?? ''} id={`post-${post.id}`} sx={{ width: 353 }}>
+                        <Box key={post.id} sx={{ width: 353 }}>
                             <Card elevation={1}>
                                 <Link href={post?.uri ?? '#'} passHref>
                                     <CardActionArea>
@@ -82,13 +82,11 @@ function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5, ID6 }) {
                         </Box>
                     );
                 })}
-                {posts && posts?.length < 1 && (
+                {posts && posts?.length === 0 && (
                     <Typography paragraph>No posts found.</Typography>
                 )}
             </Box>
         </Box>
     );
 }
-    export default AaronPosts;
-
-
+export default AaronPosts;
