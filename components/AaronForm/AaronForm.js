@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { TextField, Button, Box, Grid } from '@mui/material';
+import { TextField, Button, Box, Grid, Paper } from '@mui/material';
 
 const FETCH_FORM_QUERY = gql`
   {
@@ -125,77 +125,85 @@ const AaronForm = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <form onSubmit={handleSubmit}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                label="First Name"
-                                value={fieldValues.firstName}
-                                onChange={(e) =>
-                                    handleChange('firstName', e.target.value)
-                                }
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                label="Last Name"
-                                value={fieldValues.lastName}
-                                onChange={(e) =>
-                                    handleChange('lastName', e.target.value)
-                                }
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                label="Email"
-                                type="email"
-                                value={fieldValues.email}
-                                onChange={(e) =>
-                                    handleChange('email', e.target.value)
-                                }
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                label="Confirm Email"
-                                type="email"
-                                value={fieldValues.emailConfirmation}
-                                onChange={(e) =>
-                                    handleChange(
-                                        'emailConfirmation',
-                                        e.target.value
-                                    )
-                                }
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Message"
-                                multiline
-                                rows={4}
-                                value={fieldValues.message}
-                                onChange={(e) =>
-                                    handleChange('message', e.target.value)
-                                }
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button type="submit" variant="contained">
-                                Submit
-                            </Button>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <Paper elevation={3}>
+                            <Box p={2}>
+                                <form onSubmit={handleSubmit}>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                fullWidth
+                                                label="First Name"
+                                                value={fieldValues.firstName}
+                                                onChange={(e) =>
+                                                    handleChange('firstName', e.target.value)
+                                                }
+                                                required
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                fullWidth
+                                                label="Last Name"
+                                                value={fieldValues.lastName}
+                                                onChange={(e) =>
+                                                    handleChange('lastName', e.target.value)
+                                                }
+                                                required
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                fullWidth
+                                                label="Email"
+                                                type="email"
+                                                value={fieldValues.email}
+                                                onChange={(e) =>
+                                                    handleChange('email', e.target.value)
+                                                }
+                                                required
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                fullWidth
+                                                label="Confirm Email"
+                                                type="email"
+                                                value={fieldValues.emailConfirmation}
+                                                onChange={(e) =>
+                                                    handleChange(
+                                                        'emailConfirmation',
+                                                        e.target.value
+                                                    )
+                                                }
+                                                required
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                fullWidth
+                                                label="Message"
+                                                multiline
+                                                rows={4}
+                                                value={fieldValues.message}
+                                                onChange={(e) =>
+                                                    handleChange('message', e.target.value)
+                                                }
+                                                required
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Button type="submit" variant="contained">
+                                                Submit
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </form>
+                            </Box>
+                        </Paper>
                     </Grid>
-                </form>
+                </Grid>
             )}
         </Box>
     );
