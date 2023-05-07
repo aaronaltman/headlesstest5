@@ -17,6 +17,7 @@ import {
   AaronFooter,
   AaronPosts,
   AaronForm,
+  SingleOtherSite,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -84,6 +85,9 @@ export default function Component() {
             </section>
             <section>
               <AaronForm />
+            </section>
+            <section>
+              <SingleOtherSite databaseId={2342} />
             </section>
           </section>
         </div>
