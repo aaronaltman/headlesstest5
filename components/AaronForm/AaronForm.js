@@ -1,52 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { TextField,Button, Box } from '@mui/material';
+import { TextField, Button, Box } from '@mui/material';
 
-// Fetch form query
 const FETCH_FORM_QUERY = gql`
-  query GetForm {
-    gfForms {
-      nodes {
-        formFields {
-          edges {
-            node {
-              id
-              __typename
-              ... on EmailField {
-                id
-                isRequired
-              }
-              ... on NameField {
-                id
-                isRequired
-              }
-              ... on TextField {
-                id
-              }
-              ... on TextAreaField {
-                id
-              }
-            }
+  {
+    gfForm(id: 1, idType: DATABASE_ID) {
+      cssClass
+      databaseId
+      dateCreated
+      formFields {
+        nodes {
+          databaseId
+          type
+          ... on TextField {
+            label
+            description
           }
         }
       }
+      pagination {
+        lastPageButton {
+          text
+          type
+        }
+      }
+      title
     }
   }
 `;
 
-
-// Submit form mutation
 const SUBMIT_FORM_MUTATION = gql`
-  mutation SubmitForm($fieldValues: [InputFieldVal]!) {
-    submitGfForm(input: {
-      id: "Z2ZfZm9ybTox",
-      fieldValues: $fieldValues
-    }) {
+  mutation SubmitForm($input: SubmitGfFormInput!) {
+    submitGfForm(input: $input) {
+      confirmation {
+        type
+        message
+        url
+      }
       errors {
         id
-        message
-      }
-      confirmation {
         message
       }
       entry {
@@ -56,7 +48,6 @@ const SUBMIT_FORM_MUTATION = gql`
   }
 `;
 
-var formFields;
 const AaronForm = () => {
     const [fieldValues, setFieldValues] = useState({});
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
@@ -64,138 +55,104 @@ const AaronForm = () => {
 
     useEffect(() => {
         if (!loading && data) {
-            const initialFieldValues = data.gfForms.nodes[0].formFields.edges.reduce((acc, edge) => {
-                acc[edge.node.id] = '';
+            const fields = data.gfForm.formFields.nodes;
+            const initialFieldValues = fields.reduce((acc, field) => {
+                acc[field.databaseId] = '';
                 return acc;
             }, {});
             setFieldValues(initialFieldValues);
         }
     }, [loading, data]);
 
-    const handleChange = (fieldId, value) => {
-        setFieldValues(prev => ({
-            ...prev,
-            [fieldId]: value
-        }));
-    };
-
     const handleSubmit = async e => {
         e.preventDefault();
+
+        const fieldValuesArray = [
+            { id: 1, value: fieldValues.firstName },
+            { id: 2, value: fieldValues.lastName },
+            { id: 3, emailValues: { value: fieldValues.email, confirmationValue: fieldValues.emailConfirmation } },
+            { id: 4, value: fieldValues.message },
+        ];
+
         try {
-            const fieldValuesArray = Object.entries(fieldValues).map(([id, value]) => {
-                const field = formFields.find(field => field.id === id);
-                const fieldValue = { id };
-
-                switch (field.__typename) {
-                    case "NameField":
-                        fieldValue.nameValues = value;
-                        break;
-                    case "EmailField":
-                        fieldValue.emailValues = {
-                            value,
-                            confirmationValue: value // Assuming email confirmation is enabled
-                        };
-                        break;
-                    // Add more cases to handle different field types
-                    default:
-                        fieldValue.value = value;
-                }
-
-                return fieldValue;
-            });
-
             const { data: { submitGfForm } } = await submitForm({
                 variables: {
-                    fieldValues: fieldValuesArray
-                }
+                    input: {
+                        id: data.gfForm.databaseId,
+                        entryMeta: {
+                            createdById: 1, // The user ID.
+                            ip: '', // IP address
+                        },
+                        fieldValues: fieldValuesArray,
+                        saveAsDraft: false,
+                        sourcePage: 1,
+                        targetPage: 0,
+                    },
+                },
             });
 
             if (submitGfForm.errors && submitGfForm.errors.length > 0) {
-                console.error("Form submission errors:", submitGfForm.errors);
+                console.error('Form submission errors:', submitGfForm.errors);
             } else {
-                console.log("Form submitted successfully:", submitGfForm);
+                console.log('Form submitted successfully:', submitGfForm);
                 alert(submitGfForm.confirmation.message);
             }
         } catch (err) {
-            console.error("Error submitting form:", err);
+            console.error('Error submitting form:', err);
         }
     };
 
-    const renderForm = () => {
-        if (
-            loading ||
-            !data ||
-            !data.gfForms ||
-            !data.gfForms.nodes ||
-            !data.gfForms.nodes[0] ||
-            !data.gfForms.nodes[0].formFields ||
-            !data.gfForms.nodes[0].formFields.edges
-        ) {
-            return <p>Loading...</p>;
-        }
+    const handleChange = (fieldId, value) => {
+        setFieldValues(prevValues => ({ ...prevValues, [fieldId]: value }));
+    };
 
-        const formFields = data.gfForms.nodes[0].formFields.edges.map(edge => edge.node);
-
-
-        return (
-            <form onSubmit={handleSubmit}>
-                <Box display="flex" flexDirection="column">
-                    {formFields.map(field => {
-                        const { id } = field;
-
-                        switch (field.__typename) {
-                            case 'NameField':
-                                return (
-                                    <TextField
-                                        key={id}
-                                        id={`field-${id}`}
-                                        label="Name"
-                                        variant="outlined"
-                                        margin="normal"
-                                        onChange={e => handleChange(id, e.target.value)}
-                                    />
-                                );
-                            case 'EmailField':
-                                return (
-                                    <TextField
-                                        key={id}
-                                        id={`field-${id}`}
-                                        label="Email"
-                                        variant="outlined"
-                                        margin="normal"
-                                        onChange={e => handleChange(id, e.target.value)}
-                                    />
-                                );
-                            case 'TextField':
-                                // ... handle TextField
-                                break;
-                            case 'TextAreaField':
-                                return (
-                                    <TextField
-                                        key={id}
-                                        id={`field-${id}`}
-                                        label="Message"
-                                        variant="outlined"
-                                        multiline
-                                        rows={4}
-                                        margin="normal"
-                                        onChange={e => handleChange(id, e.target.value)}
-                                    />
-                                );
-                            default:
-                                return null;
-                        }
-                    })}
-                    <Button type="submit" variant="contained" color="primary">
+    return (
+        <Box>
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        label="First Name"
+                        value={fieldValues.firstName}
+                        onChange={e => handleChange('firstName', e.target.value)}
+                        required
+                    />
+                    <TextField
+                        label="Last Name"
+                        value={fieldValues.lastName}
+                        onChange={e => handleChange('lastName', e.target.value)}
+                        required
+                    />
+                    <TextField
+                        label="Email"
+                        type="email"
+                        value={fieldValues.email}
+                        onChange={e => handleChange('email', e.target.value)}
+                        required
+                    />
+                    <TextField
+                        label="Confirm Email"
+                        type="email"
+                        value={fieldValues.emailConfirmation}
+                        onChange={e => handleChange('emailConfirmation', e.target.value)}
+                        required
+                    />
+                    <TextField
+                        label="Message"
+                        multiline
+                        rows={4}
+                        value={fieldValues.message}
+                        onChange={e => handleChange('message', e.target.value)}
+                        required
+                    />
+                    <Button type="submit" variant="contained">
                         Submit
                     </Button>
-                </Box>
-            </form>
-        );
-    };
-
-    return <div>{renderForm()}</div>;
+                </form>
+            )}
+        </Box>
+    );
 };
 
 export default AaronForm;
-
