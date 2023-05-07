@@ -16,7 +16,7 @@ import { pageTitle } from 'utilities';
 
 export default function SingleOtherSite(props) {
     const postId = props.databaseId;
-    const { loading, error, data } = useQuery(SingleOtherSite.query, {
+    const { loading, error, data } = useQuery(GET_OTHER_SITE_POST, {
         variables: { postId },
         client: otherApolloClient,
     });
@@ -24,7 +24,8 @@ export default function SingleOtherSite(props) {
     if (loading) return <>Loading...</>;
     if (error) return <>Error: {error.message}</>;
 
-    const { title, content, featuredImage, date, author } = data.otherSite.post;
+    const { title, content, featuredImage, date, author,} =
+        data.postBy;
 
     return (
         <>
@@ -51,8 +52,8 @@ export default function SingleOtherSite(props) {
                     />
                     <div className="container">
                         <ContentWrapper content={content}>
-                            <TaxonomyTerms post={data.otherSite.post} taxonomy={'categories'} />
-                            <TaxonomyTerms post={data.otherSite.post} taxonomy={'tags'} />
+                            <TaxonomyTerms post={data.postBy} taxonomy={"categories"} />
+                            <TaxonomyTerms post={data.postBy} taxonomy={"tags"} />
                         </ContentWrapper>
                     </div>
                 </>
@@ -62,43 +63,35 @@ export default function SingleOtherSite(props) {
     );
 }
 
-SingleOtherSite.query = gql`
-  query GetOtherSitePost($postId: ID!) {
-    otherSite {
-      postBy(id: $postId) {
-        title
-        content
-        date
-        author {
-          name
-        }
-        tags {
-          edges {
-            node {
-              name
-              uri
-            }
+
+const GET_OTHER_SITE_POST = gql`
+  query GetOtherSitePost($postId: Int!) {
+    postBy(postId: $postId) {
+      title
+      content
+      date
+      author {
+        name
+      }
+      tags {
+        edges {
+          node {
+            name
+            uri
           }
         }
-        categories {
-          edges {
-            node {
-              name
-              uri
-            }
+      }
+      categories {
+        edges {
+          node {
+            name
+            uri
           }
         }
-        featuredImage {
-          sourceUrl
-        }
+      }
+      featuredImage {
+        sourceUrl
       }
     }
   }
 `;
-
-SingleOtherSite.variables = ({ databaseId }, ctx) => {
-    return {
-        postId: databaseId,
-        asPreview: ctx?.asPreview,
-    };
-};
