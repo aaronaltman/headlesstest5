@@ -98,7 +98,15 @@ const AaronForm = () => {
     };
 
     const renderForm = () => {
-        if (loading || !data || !data.gfForms || !data.gfForms.nodes || !data.gfForms.nodes[0]) {
+        if (
+            loading ||
+            !data ||
+            !data.gfForms ||
+            !data.gfForms.nodes ||
+            !data.gfForms.nodes[0] ||
+            !data.gfForms.nodes[0].formFields ||
+            !data.gfForms.nodes[0].formFields.edges
+        ) {
             return <p>Loading...</p>;
         }
 
