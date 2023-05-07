@@ -1,9 +1,10 @@
 import * as MENUS from 'constants/menus';
 
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql, ApolloProvider } from '@apollo/client';
 import styles from 'styles/pages/_Home.module.scss';
 
 import AaronHero from '/components/AaronHero/AaronHero.js';
+import otherApolloClient from '/OtherApolloClient.js';
 
 import {
   Main,
@@ -87,7 +88,9 @@ export default function Component() {
               <AaronForm />
             </section>
             <section>
+              <ApolloProvider client={otherApolloClient}>
               <SingleOtherSite databaseId={2342} />
+              </ApolloProvider>
             </section>
           </section>
         </div>
