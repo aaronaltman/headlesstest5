@@ -39,7 +39,16 @@ function AaronPosts({ intro, id, ID1, ID2, ID3, ID4, ID5, ID6 }) {
 
     return (
         <Box component="section" {...(id && { id: id })}>
-            {intro && <Typography paragraph>{intro}</Typography>}
+            {intro && (
+                <Typography
+                    variant="h4"
+                    component="h2"
+                    paragraph
+                    sx={{ textAlign: 'left', fontSize: '2rem' }}
+                >
+                    {intro}
+                </Typography>
+            )}
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {posts?.map((post, i) => {
                     let image = post?.featuredImage?.node;
