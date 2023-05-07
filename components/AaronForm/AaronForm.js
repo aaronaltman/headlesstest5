@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
 
 // Fetch form query
@@ -53,15 +53,20 @@ const SUBMIT_FORM_MUTATION = gql`
   }
 `;
 
-
 const AaronForm = () => {
-    const [fieldValues, setFieldValues] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
+    const [fieldValues, setFieldValues] = useState({});
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
     const [submitForm] = useMutation(SUBMIT_FORM_MUTATION);
+
+    useEffect(() => {
+        if (!loading && data) {
+            const initialFieldValues = data.gfForm.formFields.edges.reduce((acc, edge) => {
+                acc[edge.node.id] = '';
+                return acc;
+            }, {});
+            setFieldValues(initialFieldValues);
+        }
+    }, [loading, data]);
 
     const handleChange = (fieldId, value) => {
         setFieldValues(prev => ({
@@ -72,14 +77,24 @@ const AaronForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const result = await submitForm({
-            variables: {
-                name: fieldValues.name,
-                email: fieldValues.email,
-                message: fieldValues.message
+        try {
+            const { data: { submitGfForm } } = await submitForm({
+                variables: {
+                    name: fieldValues.name,
+                    email: fieldValues.email,
+                    message: fieldValues.message
+                }
+            });
+
+            if (submitGfForm.errors && submitGfForm.errors.length > 0) {
+                console.error("Form submission errors:", submitGfForm.errors);
+            } else {
+                console.log("Form submitted successfully:", submitGfForm);
+                alert(submitGfForm.confirmation.message);
             }
-        });
-        console.log(result);
+        } catch (err) {
+            console.error("Error submitting form:", err);
+        }
     };
 
     const renderForm = () => {
@@ -96,7 +111,7 @@ const AaronForm = () => {
                         case 'TEXT':
                             return (
                                 <div key={id}>
-                                    <label htmlFor={`field-${id}`}>{type}</label>
+                                    <label htmlFor={`field-${id}`}>Name</label>
                                     <input
                                         type="text"
                                         id={`field-${id}`}
@@ -107,7 +122,7 @@ const AaronForm = () => {
                         case 'TEXTAREA':
                             return (
                                 <div key={id}>
-                                    <label htmlFor={`field-${id}`}>{type}</label>
+                                    <label htmlFor={`field-${id}`}>Message</label>
                                     <textarea
                                         id={`field-${id}`}
                                         onChange={e => handleChange(id, e.target.value)}
