@@ -10,6 +10,7 @@ const FETCH_FORM_QUERY = gql`
           edges {
             node {
               id
+              __typename
               ... on EmailField {
                 id
                 isRequired
@@ -19,6 +20,9 @@ const FETCH_FORM_QUERY = gql`
                 isRequired
               }
               ... on TextField {
+                id
+              }
+              ... on TextAreaField {
                 id
               }
             }
@@ -141,6 +145,9 @@ const AaronForm = () => {
                                 </div>
                             );
                         case "TextField":
+                            // ... handle TextField
+                            break;
+                        case "TextAreaField":
                             return (
                                 <div key={id}>
                                     <label htmlFor={`field-${id}`}>Message</label>
