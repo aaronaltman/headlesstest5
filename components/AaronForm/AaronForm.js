@@ -4,20 +4,31 @@ import { useQuery, useMutation, gql } from '@apollo/client';
 // Fetch form query
 const FETCH_FORM_QUERY = gql`
   query GetForm {
-    gfForm(id: "Z2ZfZm9ybTox") {
-      id
-      title
-      formFields {
-        edges {
-          node {
-            id
-            type
+    gfForms {
+      nodes {
+        formFields {
+          edges {
+            node {
+              id
+              ... on EmailField {
+                id
+                isRequired
+              }
+              ... on NameField {
+                id
+                isRequired
+              }
+              ... on TextField {
+                id
+              }
+            }
           }
         }
       }
     }
   }
 `;
+
 
 // Submit form mutation
 const SUBMIT_FORM_MUTATION = gql`
@@ -100,15 +111,15 @@ const AaronForm = () => {
     const renderForm = () => {
         if (loading || !data) return <p>Loading...</p>;
 
-        const formFields = data.gfForm.formFields.edges.map(edge => edge.node);
+        const formFields = data.gfForms.nodes[0].formFields.edges.map(edge => edge.node);
 
         return (
             <form onSubmit={handleSubmit}>
                 {formFields.map(field => {
-                    const { id, type } = field;
+                    const { id } = field;
 
-                    switch (type) {
-                        case 'TEXT':
+                    switch (field.__typename) {
+                        case "NameField":
                             return (
                                 <div key={id}>
                                     <label htmlFor={`field-${id}`}>Name</label>
@@ -119,7 +130,18 @@ const AaronForm = () => {
                                     />
                                 </div>
                             );
-                        case 'TEXTAREA':
+                        case "EmailField":
+                            return (
+                                <div key={id}>
+                                    <label htmlFor={`field-${id}`}>Email</label>
+                                    <input
+                                        type="email"
+                                        id={`field-${id}`}
+                                        onChange={e => handleChange(id, e.target.value)}
+                                    />
+                                </div>
+                            );
+                        case "TextField":
                             return (
                                 <div key={id}>
                                     <label htmlFor={`field-${id}`}>Message</label>
@@ -142,4 +164,5 @@ const AaronForm = () => {
 };
 
 export default AaronForm;
+
 
