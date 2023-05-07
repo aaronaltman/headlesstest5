@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
+import { TextField,Button, Box } from '@mui/material';
 
 // Fetch form query
 const FETCH_FORM_QUERY = gql`
@@ -116,52 +117,60 @@ const AaronForm = () => {
 
         const formFields = data.gfForms.nodes[0].formFields.edges.map(edge => edge.node);
 
+
         return (
             <form onSubmit={handleSubmit}>
-                {formFields.map(field => {
-                    const { id } = field;
+                <Box display="flex" flexDirection="column">
+                    {formFields.map(field => {
+                        const { id } = field;
 
-                    switch (field.__typename) {
-                        case "NameField":
-                            return (
-                                <div key={id}>
-                                    <label htmlFor={`field-${id}`}>Name</label>
-                                    <input
-                                        type="text"
+                        switch (field.__typename) {
+                            case 'NameField':
+                                return (
+                                    <TextField
+                                        key={id}
                                         id={`field-${id}`}
+                                        label="Name"
+                                        variant="outlined"
+                                        margin="normal"
                                         onChange={e => handleChange(id, e.target.value)}
                                     />
-                                </div>
-                            );
-                        case "EmailField":
-                            return (
-                                <div key={id}>
-                                    <label htmlFor={`field-${id}`}>Email</label>
-                                    <input
-                                        type="email"
+                                );
+                            case 'EmailField':
+                                return (
+                                    <TextField
+                                        key={id}
                                         id={`field-${id}`}
+                                        label="Email"
+                                        variant="outlined"
+                                        margin="normal"
                                         onChange={e => handleChange(id, e.target.value)}
                                     />
-                                </div>
-                            );
-                        case "TextField":
-                            // ... handle TextField
-                            break;
-                        case "TextAreaField":
-                            return (
-                                <div key={id}>
-                                    <label htmlFor={`field-${id}`}>Message</label>
-                                    <textarea
+                                );
+                            case 'TextField':
+                                // ... handle TextField
+                                break;
+                            case 'TextAreaField':
+                                return (
+                                    <TextField
+                                        key={id}
                                         id={`field-${id}`}
+                                        label="Message"
+                                        variant="outlined"
+                                        multiline
+                                        rows={4}
+                                        margin="normal"
                                         onChange={e => handleChange(id, e.target.value)}
                                     />
-                                </div>
-                            );
-                        default:
-                            return null;
-                    }
-                })}
-                <button type="submit">Submit</button>
+                                );
+                            default:
+                                return null;
+                        }
+                    })}
+                    <Button type="submit" variant="contained" color="primary">
+                        Submit
+                    </Button>
+                </Box>
             </form>
         );
     };
@@ -170,5 +179,4 @@ const AaronForm = () => {
 };
 
 export default AaronForm;
-
 
