@@ -32,23 +32,10 @@ const FETCH_FORM_QUERY = gql`
 
 // Submit form mutation
 const SUBMIT_FORM_MUTATION = gql`
-  mutation SubmitForm($name: String!, $email: String!, $message: String!) {
+  mutation SubmitForm($fieldValues: [InputFieldVal]!) {
     submitGfForm(input: {
       id: "Z2ZfZm9ybTox",
-      fieldValues: [
-        {
-          id: "name",
-          value: $name
-        },
-        {
-          id: "email",
-          value: $email
-        },
-        {
-          id: "message",
-          value: $message
-        }
-      ]
+      fieldValues: $fieldValues
     }) {
       errors {
         id
@@ -63,6 +50,7 @@ const SUBMIT_FORM_MUTATION = gql`
     }
   }
 `;
+
 
 const AaronForm = () => {
     const [fieldValues, setFieldValues] = useState({});
@@ -91,9 +79,10 @@ const AaronForm = () => {
         try {
             const { data: { submitGfForm } } = await submitForm({
                 variables: {
-                    name: fieldValues.name,
-                    email: fieldValues.email,
-                    message: fieldValues.message
+                    fieldValues: Object.entries(fieldValues).map(([id, value]) => ({
+                        id,
+                        value
+                    }))
                 }
             });
 
