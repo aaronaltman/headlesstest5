@@ -56,7 +56,7 @@ const SUBMIT_FORM_MUTATION = gql`
   }
 `;
 
-
+var formFields;
 const AaronForm = () => {
     const [fieldValues, setFieldValues] = useState({});
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
@@ -82,12 +82,31 @@ const AaronForm = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
+            const fieldValuesArray = Object.entries(fieldValues).map(([id, value]) => {
+                const field = formFields.find(field => field.id === id);
+                const fieldValue = { id };
+
+                switch (field.__typename) {
+                    case "NameField":
+                        fieldValue.nameValues = value;
+                        break;
+                    case "EmailField":
+                        fieldValue.emailValues = {
+                            value,
+                            confirmationValue: value // Assuming email confirmation is enabled
+                        };
+                        break;
+                    // Add more cases to handle different field types
+                    default:
+                        fieldValue.value = value;
+                }
+
+                return fieldValue;
+            });
+
             const { data: { submitGfForm } } = await submitForm({
                 variables: {
-                    fieldValues: Object.entries(fieldValues).map(([id, value]) => ({
-                        id,
-                        value
-                    }))
+                    fieldValues: fieldValuesArray
                 }
             });
 
