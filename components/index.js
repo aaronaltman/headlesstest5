@@ -33,6 +33,7 @@ import AaronVideoEmbed from '/components/AaronVideoEmbed/AaronVideoEmbed';
 import AaronBackgroundVideo from '/components/AaronBackgroundVideo/AaronBackgroundVideo.js';
 import AaronPosts from '/components/AaronPosts/AaronPosts.js';
 import AaronForm from '/components/AaronForm/AaronForm.js';
+import SingleOtherSite from '/wp-templates/singleOtherSite.js';
 
 export {
   AaronHero,
@@ -68,5 +69,6 @@ export {
   AaronVideoEmbed,
   AaronBackgroundVideo,
   AaronPosts,
-    AaronForm,
+  AaronForm,
+  SingleOtherSite,
 };
