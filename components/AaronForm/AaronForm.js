@@ -59,7 +59,7 @@ const AaronForm = () => {
 
     useEffect(() => {
         if (!loading && data) {
-            const initialFieldValues = data.gfForm.formFields.edges.reduce((acc, edge) => {
+            const initialFieldValues = data.gfForms.nodes[0].formFields.edges.reduce((acc, edge) => {
                 acc[edge.node.id] = '';
                 return acc;
             }, {});
