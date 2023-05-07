@@ -17,7 +17,6 @@ const AaronHero = () => {
                                     width={923}
                                     height={830}
                                     layout="responsive"
-                                    priority={true}
                                 />
                             </div>
                         </div>
