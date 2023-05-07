@@ -26,15 +26,15 @@ const SUBMIT_FORM_MUTATION = gql`
       id: "1",
       fieldValues: [
         {
-          id: "1",
+          id: "name",
           value: $name
         },
         {
-          id: "2",
+          id: "email",
           value: $email
         },
         {
-          id: "3",
+          id: "message",
           value: $message
         }
       ]
@@ -54,7 +54,11 @@ const SUBMIT_FORM_MUTATION = gql`
 `;
 
 const AaronForm = () => {
-    const [fieldValues, setFieldValues] = useState({});
+    const [fieldValues, setFieldValues] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
     const [submitForm] = useMutation(SUBMIT_FORM_MUTATION);
 
@@ -69,9 +73,9 @@ const AaronForm = () => {
         e.preventDefault();
         const result = await submitForm({
             variables: {
-                name: fieldValues['1'],
-                email: fieldValues['2'],
-                message: fieldValues['3']
+                name: fieldValues.name,
+                email: fieldValues.email,
+                message: fieldValues.message
             }
         });
         console.log(result);
