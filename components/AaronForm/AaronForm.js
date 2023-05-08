@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { TextField, Button, Box, Grid, Paper } from '@mui/material';
+import { TextField, Button, Box, Grid, Paper, Modal, Typography } from '@mui/material';
 
 const FETCH_FORM_QUERY = gql`
   {
@@ -52,6 +52,31 @@ const AaronForm = () => {
     const [fieldValues, setFieldValues] = useState({});
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
     const [submitForm] = useMutation(SUBMIT_FORM_MUTATION);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
+
+    const SuccessModal = () => (
+        <Modal open={modalOpen} onClose={handleCloseModal}>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    bgcolor: 'background.paper',
+                    boxShadow: 24,
+                    p: 4,
+                }}
+            >
+                <Typography id="modal-title" variant="h6" component="h2">
+                    SUCCESS!
+                </Typography>
+            </Box>
+        </Modal>
+    );
 
     useEffect(() => {
         if (!loading && data) {
@@ -109,7 +134,7 @@ const AaronForm = () => {
                 console.error('Form submission errors:', submitGfForm.errors);
             } else {
                 console.log('Form submitted successfully:', submitGfForm);
-                alert(submitGfForm.confirmation.message);
+                setModalOpen(true); // Show the modal on successful form submission
             }
         } catch (err) {
             console.error('Error submitting form:', err);
