@@ -82,7 +82,15 @@ const AaronForm = () => {
         if (!loading && data) {
             const fields = data.gfForm.formFields.nodes;
             const initialFieldValues = fields.reduce((acc, field) => {
-                acc[field.databaseId] = '';
+                if (field.type === 'name') {
+                    acc.firstName = '';
+                    acc.lastName = '';
+                } else if (field.type === 'email') {
+                    acc.email = '';
+                    acc.emailConfirmation = '';
+                } else {
+                    acc[field.databaseId] = '';
+                }
                 return acc;
             }, {});
             setFieldValues(initialFieldValues);
@@ -95,26 +103,28 @@ const AaronForm = () => {
         const fieldValuesArray = [
             {
                 id: 1,
-                nameValues: {
+                value: {
                     first: fieldValues.firstName,
-                    last: fieldValues.lastName
-                }
+                    last: fieldValues.lastName,
+                },
             },
             {
                 id: 2,
-                emailValues: {
+                value: {
                     value: fieldValues.email,
-                    confirmationValue: fieldValues.emailConfirmation
-                }
+                    confirmationValue: fieldValues.emailConfirmation,
+                },
             },
             {
                 id: 3,
-                value: fieldValues.message
+                value: fieldValues.message,
             },
         ];
 
         try {
-            const { data: { submitGfForm } } = await submitForm({
+            const {
+                data: { submitForm: submitGfForm },
+            } = await submitForm({
                 variables: {
                     input: {
                         id: data.gfForm.databaseId,
