@@ -11,7 +11,6 @@ import {
   Heading,
   NavigationMenu,
   SEO,
-  Header,
   Posts,
   Testimonials,
   AaronTopBar,
@@ -19,6 +18,7 @@ import {
   AaronPosts,
   AaronForm,
   SingleOtherSite,
+  AaronHeader,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -42,7 +42,7 @@ export default function Component() {
       <SEO title={siteTitle} description={siteDescription} />
 <AaronTopBar />
 
-      <Header
+      <AaronHeader
         title={siteTitle}
         description={siteDescription}
         menuItems={primaryMenu}
@@ -86,11 +86,6 @@ export default function Component() {
             </section>
             <section>
               <AaronForm />
-            </section>
-            <section>
-              <ApolloProvider client={otherApolloClient}>
-              <SingleOtherSite databaseId={2342} />
-              </ApolloProvider>
             </section>
           </section>
         </div>
