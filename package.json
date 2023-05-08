@@ -16,7 +16,7 @@
   "dependencies": {
     "@apollo/client": "3.7.0",
     "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/styled": "^11.3.0",
     "@faustwp/cli": "0.2.10",
     "@faustwp/core": "0.2.11",
     "@mui/lab": "^5.0.0-alpha.129",
