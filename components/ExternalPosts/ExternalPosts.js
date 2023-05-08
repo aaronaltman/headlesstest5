@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery,gql, } from '@apollo/client';
 
-import { otherApolloClient } from '/OtherApolloClient.js';
+import otherApolloClient  from '/OtherApolloClient.js';
 import ExternalPost from '/components/ExternalPost/ExternalPost.js';
 
 const GET_EXTERNAL_POSTS = gql`
@@ -10,26 +10,21 @@ const GET_EXTERNAL_POSTS = gql`
       edges {
         node {
           id
+          title  // Add this line
           date
           featuredImage {
             node {
               id
+              sourceUrl  // Add this line
             }
           }
           uri
-          content
-          categories {
-            edges {
-              node {
-                id
-              }
-            }
-          }
         }
       }
     }
   }
 `;
+
 
 const ExternalPosts = () => {
     const { loading, error, data } = useQuery(GET_EXTERNAL_POSTS, {
