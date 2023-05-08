@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import ExternalPost from '../../components/ExternalPost/ExternalPost';
 
-import { otherApolloClient } from '/OtherApolloClient.js'; // Import the externalClient you created earlier
+import otherApolloClient from '/OtherApolloClient.js'; // Import the externalClient you created earlier
 
 const GET_EXTERNAL_POST = gql`
   query GetExternalPost($slug: ID!) {
