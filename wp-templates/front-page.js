@@ -1,10 +1,9 @@
 import * as MENUS from 'constants/menus';
 
-import { useQuery, gql, ApolloProvider } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import styles from 'styles/pages/_Home.module.scss';
 
 import AaronHero from '/components/AaronHero/AaronHero.js';
-import otherApolloClient from '/OtherApolloClient.js';
 
 import {
   Main,
@@ -17,8 +16,7 @@ import {
   AaronFooter,
   AaronPosts,
   AaronForm,
-  SingleOtherSite,
-  AaronHeader,
+  Header,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -42,7 +40,7 @@ export default function Component() {
       <SEO title={siteTitle} description={siteDescription} />
 <AaronTopBar />
 
-      <AaronHeader
+      <Header
         title={siteTitle}
         description={siteDescription}
         menuItems={primaryMenu}
