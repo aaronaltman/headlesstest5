@@ -34,7 +34,6 @@ import AaronBackgroundVideo from '/components/AaronBackgroundVideo/AaronBackgrou
 import AaronPosts from '/components/AaronPosts/AaronPosts.js';
 import AaronForm from '/components/AaronForm/AaronForm.js';
 import SingleOtherSite from '/wp-templates/singleOtherSite.js';
-import AaronHeader from '/components/Aaronheader/Aaronheader.js';
 
 export {
   AaronHero,
@@ -72,5 +71,4 @@ export {
   AaronPosts,
   AaronForm,
   SingleOtherSite,
-  AaronHeader,
 };
