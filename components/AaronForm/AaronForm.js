@@ -50,9 +50,9 @@ const SUBMIT_FORM_MUTATION = gql`
 
 const AaronForm = () => {
     const [fieldValues, setFieldValues] = useState({});
+    const [modalOpen, setModalOpen] = useState(false); // Add this state to handle modal open status
     const { loading, data } = useQuery(FETCH_FORM_QUERY);
     const [submitForm] = useMutation(SUBMIT_FORM_MUTATION);
-
     useEffect(() => {
         if (!loading && data) {
             const fields = data.gfForm.formFields.nodes;
@@ -98,14 +98,14 @@ const AaronForm = () => {
 
         try {
             const {
-                data: { submitForm: submitGfForm },
+                data: { submitGfForm },
             } = await submitForm({
                 variables: {
                     input: {
                         id: data.gfForm.databaseId,
                         entryMeta: {
-                            createdById: 1, // The user ID.
-                            ip: '', // IP address
+                            createdById: 1,
+                            ip: '',
                         },
                         fieldValues: fieldValuesArray,
                         saveAsDraft: false,
@@ -119,7 +119,7 @@ const AaronForm = () => {
                 console.error('Form submission errors:', submitGfForm.errors);
             } else {
                 console.log('Form submitted successfully:', submitGfForm);
-                setModalOpen(true); // Show the modal on successful form submission
+                setModalOpen(true);
             }
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -129,7 +129,6 @@ const AaronForm = () => {
     const handleChange = (fieldId, value) => {
         setFieldValues(prevValues => ({ ...prevValues, [fieldId]: value }));
     };
-
     return (
         <Box>
             {loading ? (
@@ -215,8 +214,40 @@ const AaronForm = () => {
                     </Grid>
                 </Grid>
             )}
+
+            <Modal
+                open={modalOpen}
+                onClose={() => setModalOpen(false)}
+                aria-labelledby="modal-title"
+                aria-describedby="modal-description"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: 400,
+                        bgcolor: 'background.paper',
+                        boxShadow: 24,
+                        p: 4,
+                        borderRadius: 1,
+                    }}
+                >
+                    <Typography id="modal-title" variant="h6" component="h2">
+                        Success
+                    </Typography>
+                    <Typography id="modal-description" sx={{ mt: 2 }}>
+                        Your form has been submitted successfully.
+                    </Typography>
+                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
+                        <Button onClick={() => setModalOpen(false)}>Close</Button>
+                    </Box>
+                </Box>
+            </Modal>
         </Box>
     );
-}
+};
 
 export default AaronForm;
+
