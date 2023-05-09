@@ -25,7 +25,6 @@ const GET_EXTERNAL_POSTS = gql`
   }
 `;
 
-
 const ExternalPosts = () => {
     const { loading, error, data } = useQuery(GET_EXTERNAL_POSTS, {
         client: otherApolloClient, // Use the externalClient you created earlier
@@ -37,7 +36,7 @@ const ExternalPosts = () => {
     return (
         <div>
             {data.posts.edges.map(({ node: post }) => (
-                <ExternalPost key={post.id} slug={post.uri} />
+                <ExternalPost key={post.id} post={post} />
             ))}
         </div>
     );
