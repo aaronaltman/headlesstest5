@@ -37,7 +37,7 @@ const ExternalPosts = () => {
     return (
         <div>
             {data.posts.edges.map(({ node: post }) => (
-                <ExternalPost key={post.id} post={post} />
+                <ExternalPost key={post.id} slug={post.uri} />
             ))}
         </div>
     );
