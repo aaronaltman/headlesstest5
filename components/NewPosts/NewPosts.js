@@ -1,6 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import Image from 'next/image';
+import { Button, Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 
 import otherApolloClient from '/OtherApolloClient.js';
 
@@ -8,7 +8,7 @@ const DOMAIN = 'https://fixdappspeed2.mystagingwebsite.com';
 
 const GET_POSTS = gql`
 query getPosts($after: String) {
-  posts(first: 20, after: $after) {
+  posts(first: 30, after: $after) {
     edges {
       node {
         id
@@ -50,20 +50,26 @@ const NewPosts = () => {
     };
 
     return (
-        <div>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {data.posts.edges.map(({ node }) => (
-                <div key={node.id}>
-                    <h2>{node.title}</h2>
+                <Card key={node.id} sx={{ maxWidth: 345, m: 2 }}>
+                    <Typography variant="h5">{node.title}</Typography>
                     {node.featuredImage && node.featuredImage.node && node.featuredImage.node.uri && (
-                        <Image src={`${DOMAIN}${node.featuredImage.node.uri}`} alt={node.title} width={353} height={233} />
+                        <CardMedia component="img" image={`${DOMAIN}${node.featuredImage.node.uri}`} alt={node.title} />
                     )}
-                    {node.excerpt && <p>{node.excerpt}</p>}
-                </div>
+                    {node.excerpt && (
+                        <CardContent>
+                            <Typography variant="body2" color="text.secondary">{node.excerpt}</Typography>
+                        </CardContent>
+                    )}
+                </Card>
             ))}
             {data.posts.pageInfo.hasNextPage && (
-                <button onClick={loadMorePosts}>Load more</button>
+                <Button variant="contained" color="primary" onClick={loadMorePosts} sx={{ m: 2 }}>
+                    Load more
+                </Button>
             )}
-        </div>
+        </Box>
     );
 };
 
