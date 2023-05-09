@@ -10,12 +10,12 @@ const GET_EXTERNAL_POSTS = gql`
       edges {
         node {
           id
-          title  // Add this line
+          title  
           date
           featuredImage {
             node {
               id
-              sourceUrl  // Add this line
+              sourceUrl 
             }
           }
           uri
