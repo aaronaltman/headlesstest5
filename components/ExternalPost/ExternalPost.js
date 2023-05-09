@@ -30,7 +30,11 @@ const ExternalPost = ({ slug }) => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const { id, uri, title, featuredImage } = data.post;
+    if (!data.post) {
+        return <p>No post found for this slug.</p>;
+    }
+
+    const { id, uri, title, content, featuredImage } = data.post;
 
     return (
         <div key={id}>
@@ -42,8 +46,10 @@ const ExternalPost = ({ slug }) => {
             {featuredImage && (
                 <Image src={featuredImage.node.sourceUrl} alt={title} width={335} height={235} />
             )}
+            <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
     );
 };
 
 export default ExternalPost;
+
