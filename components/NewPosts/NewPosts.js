@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 import { Button, Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 
 import otherApolloClient from '/OtherApolloClient.js';
+import Header from '/components/Header/Header.js';
 
 const DOMAIN = 'https://fixdappspeed2.mystagingwebsite.com';
 
@@ -50,6 +51,8 @@ const NewPosts = () => {
     };
 
     return (
+        <>
+            <Header />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {data.posts.edges.map(({ node }) => (
                 <Card key={node.id} sx={{ maxWidth: 345, m: 2 }}>
@@ -70,6 +73,7 @@ const NewPosts = () => {
                 </Button>
             )}
         </Box>
+        </>
     );
 };
 
